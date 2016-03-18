@@ -32,6 +32,17 @@
     <link href="{{ site.url }}/css/fonts-google.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="{{ site.url }}{{ site.themes }}/images/favicon.ico" type="image/x-icon" />
     <!--[if lt IE 9]><script src="./js/html5.js"></script><![endif]-->
+    {% if site.baiduTongji.config %}
+        <script>
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?" + "{{ site.baiduTongji.id }}";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+    {% endif %}
 </head>
 <body id="violet">
     <div class="page-wrapper">

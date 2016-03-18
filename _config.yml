@@ -90,9 +90,9 @@ follow:
   #  url: http://www.zhanxin.info
 
 #作者信息
-author:
-  link: http://www.zhanxin.info/contact.html
-  img: http://tp2.sinaimg.cn/1832671293/180/40020872447/1
+#author:
+#  link: http://www.zhanxin.info/contact.html
+#  img: http://tp2.sinaimg.cn/1832671293/180/40020872447/1
 
 #评论信息
 disqus:
@@ -100,5 +100,10 @@ disqus:
   id: piznblog
 
 duoshuo:
-  config: false
-  id: zhanxin
+  config: true
+  id: dysing
+
+#统计信息
+baiduTongji:
+	config: true
+	id: 16698c8a7e7075d85fccc6e6c691e905
