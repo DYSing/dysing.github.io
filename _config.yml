@@ -22,7 +22,8 @@ unpublished:  false
 
 # Conversion
 markdown:     kramdown
-highlighter:  pygments
+highlighter:  rouge
+#highlighter:  pygments
 lsi:          false
 excerpt_separator: "\n\n"
 
@@ -42,8 +43,8 @@ timezone:      null
 title: DYSing
 subTitle: 既然好奇何不尝试，既然决定何不启程.
 description: 这是DYSing的第一个自己搭建的博客，它是基于Jekyll使用pizn的主题搭建起来的。就在这里留下学习的点滴吧，加油！
-#url: http://dysing.github.io
-url: http://localhost:4000
+url: http://dysing.github.io
+#url: http://localhost:4000
 feed: /atom.xml
 
 #菜单配置
