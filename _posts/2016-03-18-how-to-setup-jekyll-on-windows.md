@@ -5,7 +5,7 @@ date:   2016-03-18 14:45:42
 keywords: 
 description: 第一篇文章就写一下这个博客搭建的过程吧。
 categories: 
-comment:true
+comment: true
 ---
 # Jekyll本地环境搭建
 
