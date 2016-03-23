@@ -1,11 +1,12 @@
 ---
 layout: post
-title:  "第一篇!"
+title:  "Jekyll on Windows!"
 date:   2016-03-18 14:45:42
 keywords: 
-description: 第一篇文章就写一下这个博客搭建的过程吧。
+description: Jekyll在Windows环境下的安装过程
 categories: 
 comment: true
+duoshuokey: 20160318144542
 ---
 # Jekyll本地环境搭建
 
