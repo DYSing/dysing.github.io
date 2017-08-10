@@ -95,9 +95,6 @@ follow:
 #  img: http://tp2.sinaimg.cn/1832671293/180/40020872447/1
 
 #评论信息
-#总的评论开关
-comment: false
-
 disqus:
   config: false
   id: piznblog

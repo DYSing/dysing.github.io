@@ -104,7 +104,6 @@
             "background-image": "url(" + headImgArr[item] + ")"
         });
     </script>
-    {% if site.comment %}
     {% if page.comment %}
         {% if site.disqus.config %}
         <script type="text/javascript">
@@ -132,7 +131,6 @@
             </script>
             {% endif %}
         {% endif %}
-    {% endif %}
     {% endif %}
 </body>
 </html>
