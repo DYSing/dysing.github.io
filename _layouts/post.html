@@ -25,6 +25,7 @@ comment: true
     </div>
 </nav>
 <div class="comment">
+{% if site.comment %}
     {% if site.disqus.config %}
         <div class="comment-cnt">
             <div id="disqus_thread"></div>
@@ -36,4 +37,5 @@ comment: true
         </div>
         {% endif %}
     {% endif %}
+{% endif %}
 </div>
