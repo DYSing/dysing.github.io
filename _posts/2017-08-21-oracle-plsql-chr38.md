@@ -11,7 +11,7 @@ comment: false
 ```
 select * from tmp where a = '&a';
 ```
-![](resources/15033163076611.jpg)
+![](/resources/15033163076611.jpg)
 
  解决方式:
  把`&`替换成`chr(38) `
