@@ -14,8 +14,8 @@ comment: false
 ---
 
 在处理一个json的时候，发现一个很怪的异常。
+
 `Java.lang.NoSuchMethodException: Property 'name' has no getter method`
-该异常很类同下面的一段代码，所以摘抄
 
 ```
   import org.apache.commons.beanutils.PropertyUtils;  
@@ -42,11 +42,11 @@ comment: false
 ```
 发现这个异常来自`org.apache.commons.beanutils.PropertyUtils`类。
 这个很怪的异常，可能来自3个原因：
-<font color=red>
-1. 类需要定义为public
-2. 类可能需要定义一个包
-3. Bean类需要序列化
-</font> 
+
+1. **类需要定义为public**
+2. **类可能需要定义一个包**
+3. **Bean类需要序列化**
+
 遇该问题对症下药即可。
 
 [原文链接](http://blog.csdn.net/xiciliu/article/details/5788182)
