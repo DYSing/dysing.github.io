@@ -95,6 +95,8 @@ follow:
 #  link: http://www.zhanxin.info/contact.html
 #  img: http://tp2.sinaimg.cn/1832671293/180/40020872447/1
 
+#总的评论开关
+comment: false
 #评论信息
 disqus:
   config: false
