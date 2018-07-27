@@ -56,6 +56,8 @@
 			
 				<li><a href="/">主页</a></li>
 	        
+				<li><a href="/tags/给自己挖坑/">给自己挖坑</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -112,6 +114,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -132,7 +136,9 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 100%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="/tags/给自己挖坑/">给自己挖坑</a></li>
 		        
 				</ul>
 			</nav>
@@ -148,6 +154,212 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-2017-08-21-https" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/21/2017-08-21-https/">Https单向认证和双向认证</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/21/2017-08-21-https/" class="archive-article-date">
+  	<time datetime="2017-08-21T12:47:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###一、Http</p>
+<p>HyperText Transfer Protocol，超文本传输协议，是互联网上使用最广泛的一种协议，所有WWW文件必须遵循的标准。HTTP协议传输的数据都是未加密的，也就是明文的，因此使用HTTP协议传输隐私信息非常不安全。</p>
+<p>使用TCP端口为：80</p>
+<p>###二、Https</p>
+<p>Hyper Text Transfer Protocol over Secure Socket Layer，安全的超文本传输协议，网景公式设计了SSL(Secure Sockets Layer)协议用于对Http协议传输的数据进行加密，保证会话过程中的安全性。</p>
+<p>使用TCP端口默认为443</p>
+<p>###三、SSL协议加密方式</p>
+<p>SSL协议即用到了对称加密也用到了非对称加密(公钥加密)，在建立传输链路时，SSL首先对对称加密的密钥使用公钥进行非对称加密，链路建立好之后，SSL对传输内容使用对称加密。</p>
+<ol>
+<li><p>对称加密<br>速度高，可加密内容较大，用来加密会话过程中的消息</p>
+</li>
+<li><p>公钥加密<br>加密速度较慢，但能提供更好的身份认证技术，用来加密对称加密的密钥</p>
+</li>
+</ol>
+<p>###四、单向认证<br><img src="/resources/15033193659422.jpg" alt=""></p>
+<p>Https在建立Socket连接之前，需要进行握手，具体过程如下：</p>
+<ol>
+<li>客户端向服务端发送SSL协议版本号、加密算法种类、随机数等信息。</li>
+<li>服务端给客户端返回SSL协议版本号、加密算法种类、随机数等信息，同时也返回服务器端的证书，即公钥证书</li>
+<li><p>客户端使用服务端返回的信息验证服务器的合法性，包括：<br> ○ 证书是否过期<br> ○ 发型服务器证书的CA是否可靠<br> ○ 返回的公钥是否能正确解开返回证书中的数字签名<br> ○ 服务器证书上的域名是否和服务器的实际域名相匹配<br>验证通过后，将继续进行通信，否则，终止通信</p>
+</li>
+<li><p>客户端向服务端发送自己所能支持的对称加密方案，供服务器端进行选择</p>
+</li>
+<li>服务器端在客户端提供的加密方案中选择加密程度最高的加密方式。</li>
+<li>服务器将选择好的加密方案通过明文方式返回给客户端</li>
+<li>客户端接收到服务端返回的加密方式后，使用该加密方式生成产生随机码，用作通信过程中对称加密的密钥，使用服务端返回的公钥进行加密，将加密后的随机码发送至服务器</li>
+<li>服务器收到客户端返回的加密信息后，使用自己的私钥进行解密，获取对称加密密钥。<br>在接下来的会话中，服务器和客户端将会使用该密码进行对称加密，保证通信过程中信息的安全。</li>
+</ol>
+<p>###五、双向认证</p>
+<p>双向认证和单向认证原理基本差不多，只是除了客户端需要认证服务端以外，增加了服务端对客户端的认证，具体过程如下：<br><img src="/resources/15033194048012.jpg" alt=""></p>
+<ol>
+<li>客户端向服务端发送SSL协议版本号、加密算法种类、随机数等信息。</li>
+<li>服务端给客户端返回SSL协议版本号、加密算法种类、随机数等信息，同时也返回服务器端的证书，即公钥证书</li>
+<li><p>客户端使用服务端返回的信息验证服务器的合法性，包括：<br> ○ 证书是否过期<br> ○ 发型服务器证书的CA是否可靠<br> ○ 返回的公钥是否能正确解开返回证书中的数字签名<br> ○ 服务器证书上的域名是否和服务器的实际域名相匹配<br>验证通过后，将继续进行通信，否则，终止通信</p>
+</li>
+<li><p>服务端要求客户端发送客户端的证书，客户端会将自己的证书发送至服务端</p>
+</li>
+<li>验证客户端的证书，通过验证后，会获得客户端的公钥</li>
+<li>客户端向服务端发送自己所能支持的对称加密方案，供服务器端进行选择</li>
+<li>服务器端在客户端提供的加密方案中选择加密程度最高的加密方式</li>
+<li>将加密方案通过使用之前获取到的公钥进行加密，返回给客户端</li>
+<li>客户端收到服务端返回的加密方案密文后，使用自己的私钥进行解密，获取具体加密方式，而后，产生该加密方式的随机码，用作加密过程中的密钥，使用之前从服务端证书中获取到的公钥进行加密后，发送给服务端</li>
+<li>服务端收到客户端发送的消息后，使用自己的私钥进行解密，获取对称加密的密钥，在接下来的会话中，服务器和客户端将会使用该密码进行对称加密，保证通信过程中信息的安全。</li>
+</ol>
+<p><a href="http://blog.csdn.net/duanbokan/article/details/50847612" target="_blank" rel="external">原文链接</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Https</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/21/2017-08-21-https/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2017-08-21-java-split" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/21/2017-08-21-java-split/">JAVA split 分割 字符串</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/21/2017-08-21-java-split/" class="archive-article-date">
+  	<time datetime="2017-08-21T11:59:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JAVA-split-分割-字符串"><a href="#JAVA-split-分割-字符串" class="headerlink" title="JAVA split 分割 字符串"></a>JAVA split 分割 字符串</h1><p>split在Java中肯定是个常用方法，用于字符串分割。用的多不代表用的好，一不小心就给自己挖坑了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String tmp = &quot;10.5.1.1&quot;;</div><div class="line">String resultStrings[] = tmp.split(&quot;.&quot;);</div><div class="line">if(&quot;1&quot;.equals(resultStrings[2])&#123;</div><div class="line">//Do Something</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>判断条件就是进不去，恩，调试一下发现，split没有正确分割。恍然大悟，原来是特殊字符的问题。<br>下面直接粘贴一段网上的内容吧：</p>
+<h3 id="【1】单个符号作为分隔符"><a href="#【1】单个符号作为分隔符" class="headerlink" title="【1】单个符号作为分隔符"></a>【1】单个符号作为分隔符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">String address=&quot;上海|上海市|闵行区|吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;\\|&quot;);//如果以竖线为分隔符，则split的时候需要加上两个斜杠【\\】进行转义</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div><div class="line"></div><div class="line"></div><div class="line">Stringaddress=&quot;上海*上海市*闵行区*吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;\\*&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div><div class="line"></div><div class="line"></div><div class="line">Stringaddress=&quot;上海:上海市:闵行区:吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;\\:&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div><div class="line"></div><div class="line"></div><div class="line">Stringaddress=&quot;上海.上海市.闵行区.吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;\\.&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div><div class="line"></div><div class="line">Stringaddress=&quot;上海^上海市^闵行区^吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;\\^&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div><div class="line"></div><div class="line"></div><div class="line">Stringaddress=&quot;上海@上海市@闵行区@吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;@&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div><div class="line"></div><div class="line"></div><div class="line">Stringaddress=&quot;上海,上海市,闵行区,吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;,&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div></pre></td></tr></table></figure>
+<h3 id="【2】多个符号作为分隔符"><a href="#【2】多个符号作为分隔符" class="headerlink" title="【2】多个符号作为分隔符"></a>【2】多个符号作为分隔符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String address=&quot;上海^上海市@闵行区#吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;\\^|@|#&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="格式小提示"><a href="#格式小提示" class="headerlink" title="格式小提示"></a>格式小提示</h3><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">String address = newString(&quot;192.168.13.240&quot;);</div><div class="line"></div><div class="line">String[] str = address.split(&quot;\\.&quot;);</div><div class="line"></div><div class="line">for(String s : str)&#123;</div><div class="line"></div><div class="line">System.out.println(s);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">输出格式：</div><div class="line"></div><div class="line">192</div><div class="line"></div><div class="line">168</div><div class="line"></div><div class="line">13</div><div class="line"></div><div class="line">240</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">输出格式：上海上海市闵行区吴中路</div></pre></td></tr></table></figure>
+<hr>
+<p><strong>总结：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">（1）split表达式，其实就是一个正则表达式。*  ^ |等符号在正则表达式中属于一种有特殊含义的字符，如果使用此种字符作为分隔符，必须使用转义符即\\\加以转义。</div><div class="line"></div><div class="line">（2）如果使用多个分隔符则需要借助 |符号，如【2】所示，但需要转义符的仍然要加上分隔符进行处理。</div></pre></td></tr></table></figure>
+<p><a href="http://blog.sina.com.cn/s/blog_b6487d470101g0hp.html" target="_blank" rel="external">原文链接</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/21/2017-08-21-java-split/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-2017-08-21-oracle-plsql-chr38" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -439,200 +651,6 @@
 
 
   
-    <article id="post-2017-08-22-nginx" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/22/2017-08-22-nginx/">nginx 服务器重启、关闭命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/22/2017-08-22-nginx/" class="archive-article-date">
-  	<time datetime="2017-05-22T06:24:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="nginx-服务器重启、关闭命令"><a href="#nginx-服务器重启、关闭命令" class="headerlink" title="nginx 服务器重启、关闭命令"></a>nginx 服务器重启、关闭命令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nginx -s reload  ：修改配置后重新加载生效</div><div class="line">nginx -s reopen  ：重新打开日志文件</div><div class="line">nginx -t -c /path/to/nginx.conf 测试nginx配置文件是否正确</div></pre></td></tr></table></figure>
-<p>关闭nginx：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nginx -s stop  :快速停止nginx</div><div class="line">         quit  ：完整有序的停止nginx</div></pre></td></tr></table></figure>
-<p>其他的停止nginx 方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep nginx</div><div class="line"></div><div class="line">kill -QUIT 主进程号   ：从容停止Nginx</div><div class="line">kill -TERM 主进程号   ：快速停止Nginx</div><div class="line">pkill -9 nginx       ：强制停止Nginx</div></pre></td></tr></table></figure>
-<p>启动nginx:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -c /path/to/nginx.conf</div></pre></td></tr></table></figure>
-<p>平滑重启nginx：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kill -HUP 主进程号</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">常用命令</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Nginx//" class="article-tag-list-link color1">Nginx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/22/2017-08-22-nginx/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2016-03-31-car" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/31/2016-03-31-car/">倒车技巧!</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/31/2016-03-31-car/" class="archive-article-date">
-  	<time datetime="2016-03-31T15:05:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> 之前刚学车的时候，倒车总找不好方向，在网上看到了这组图片，受益匪浅故保存在电脑上，现在分享出来希望能给更多的人以帮助，十分感谢原作者。</p>
-<h2 id="第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。"><a href="#第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。" class="headerlink" title="第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。"></a>第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。</h2><p><img src="/resources/20160331/car1.gif" alt="car1"></p>
-<hr>
-<h2 id="第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央"><a href="#第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央" class="headerlink" title="第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央"></a>第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央</h2><p><img src="/resources/20160331/car2.gif" alt="car2"></p>
-<hr>
-<h2 id="第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”-这种方式带来的好处就是-使汽车进入非常狭小的空间"><a href="#第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”-这种方式带来的好处就是-使汽车进入非常狭小的空间" class="headerlink" title="第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”,这种方式带来的好处就是-使汽车进入非常狭小的空间"></a>第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”,这种方式带来的好处就是-使汽车进入非常狭小的空间</h2><p><img src="/resources/20160331/car3.gif" alt="car3"></p>
-<hr>
-<h2 id="第四：你不可能以前进的方式进入，因为后轮不能左右移动"><a href="#第四：你不可能以前进的方式进入，因为后轮不能左右移动" class="headerlink" title="第四：你不可能以前进的方式进入，因为后轮不能左右移动"></a>第四：你不可能以前进的方式进入，因为后轮不能左右移动</h2><p><img src="/resources/20160331/car4.gif" alt="car4"></p>
-<hr>
-<h2 id="第五：相反，你却可以后退进入狭小的空间。"><a href="#第五：相反，你却可以后退进入狭小的空间。" class="headerlink" title="第五：相反，你却可以后退进入狭小的空间。"></a>第五：相反，你却可以后退进入狭小的空间。</h2><p><img src="/resources/20160331/car5.gif" alt="car5"></p>
-<hr>
-<h2 id="第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。"><a href="#第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。" class="headerlink" title="第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。"></a>第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。</h2><p><img src="/resources/20160331/car6.gif" alt="car6"></p>
-<hr>
-<h2 id="第七：倒车要点一，后轮的位置，如下图。"><a href="#第七：倒车要点一，后轮的位置，如下图。" class="headerlink" title="第七：倒车要点一，后轮的位置，如下图。"></a>第七：倒车要点一，后轮的位置，如下图。</h2><p><img src="/resources/20160331/car7.gif" alt="car7"></p>
-<hr>
-<h2 id="第八：倒车要点二，贴近障碍物，如下图"><a href="#第八：倒车要点二，贴近障碍物，如下图" class="headerlink" title="第八：倒车要点二，贴近障碍物，如下图"></a>第八：倒车要点二，贴近障碍物，如下图</h2><p><img src="/resources/20160331/car8.gif" alt="car8"></p>
-<hr>
-<h2 id="第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。"><a href="#第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。" class="headerlink" title="第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。"></a>第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。</h2><p><img src="/resources/20160331/car9.gif" alt="car9"></p>
-<hr>
-<h2 id="第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。"><a href="#第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。" class="headerlink" title="第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。"></a>第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。</h2><p><img src="/resources/20160331/car10.gif" alt="car10"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Car</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">生活小技巧</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/31/2016-03-31-car/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -730,15 +748,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">常用工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Jekyll</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">常用工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -786,19 +804,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Json</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">常用命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Json</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -811,6 +829,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">给自己挖坑</a>
               </li>
             
             <div class="clearfix"></div>

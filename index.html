@@ -56,6 +56,8 @@
 			
 				<li><a href="/">主页</a></li>
 	        
+				<li><a href="/tags/给自己挖坑/">给自己挖坑</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -112,6 +114,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -132,7 +136,9 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 100%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="/tags/给自己挖坑/">给自己挖坑</a></li>
 		        
 				</ul>
 			</nav>
@@ -148,6 +154,172 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-2018-07-27-redis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/27/2018-07-27-redis/">Redis</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/27/2018-07-27-redis/" class="archive-article-date">
+  	<time datetime="2018-07-27T03:06:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="给自己挖坑系列：Redis篇"><a href="#给自己挖坑系列：Redis篇" class="headerlink" title="给自己挖坑系列：Redis篇"></a>给自己挖坑系列：Redis篇</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>介绍直接从网上摘抄吧</p>
+<blockquote>
+<p>Redis是C语言编写的著名开源NoSql数据库，可基于内存也可持久化，数据以Key-Value形式存放，提供多种语言的API。</p>
+<p>Redis和Memcached类似，同时它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。</p>
+<p>在此基础上，Redis支持各种不同方式的排序。与Memcached一样，为了保证效率，数据都是缓存在内存中。区别的是Redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。</p>
+</blockquote>
+<h2 id="安装（Linux）"><a href="#安装（Linux）" class="headerlink" title="安装（Linux）"></a>安装（Linux）</h2><p>可以从<a href="https://redis.io/download" target="_blank" rel="external">官网</a>下载<a href="http://download.redis.io/releases/" target="_blank" rel="external">需要的版本</a>。当前（2018-07-27）官网上放出的最新稳定版是<a href="http://download.redis.io/releases/redis-4.0.10.tar.gz" target="_blank" rel="external">4.0.10</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> wget http://download.redis.io/releases/redis-4.0.10.tar.gz</div><div class="line"><span class="meta">$</span> tar xzf redis-4.0.10.tar.gz</div><div class="line"><span class="meta">$</span> cd redis-4.0.10</div><div class="line"><span class="meta">$</span> make</div></pre></td></tr></table></figure>
+<p>执行<code>make</code>需要基础的编译环境，gcc这些的安装不在本文讨论范围内。<br>make完后<code>src</code>目录下会生成服务程序<code>redis-server</code>和客户端程序<code>redis-cli</code></p>
+<p>可以直接启动redis服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd src</div><div class="line">$ ./redis-server</div></pre></td></tr></table></figure></p>
+<p>不跟任何参数则表示使用的是默认配置。也可以通过启动参数告诉redis使用指定配置文件。<br>如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd src</div><div class="line">$ ./redis-server ../redis.conf</div></pre></td></tr></table></figure></p>
+<p>redis.conf 就是配置文件。我们可以根据需要使用自己的配置文件。<br><strong>注意</strong>：默认配置启动的Redis不会后台执行，也就是结束了进程或者直接关了窗口Redis服务就停止了。如果需要后台方式启动服务，可以再配置文件中增加<code>daemonize yes</code></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>网上找了一份中文的<a href="http://www.runoob.com/redis/redis-conf.html" target="_blank" rel="external">参数说明</a>提额在下面以供查阅</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div></pre></td><td class="code"><pre><div class="line">1. Redis默认不是以守护进程的方式运行，可以通过该配置项修改，使用yes启用守护进程</div><div class="line"></div><div class="line">    daemonize no</div><div class="line"></div><div class="line">2. 当Redis以守护进程方式运行时，Redis默认会把pid写入/var/run/redis.pid文件，可以通过pidfile指定</div><div class="line"></div><div class="line">    pidfile /var/run/redis.pid</div><div class="line"></div><div class="line">3. 指定Redis监听端口，默认端口为6379，作者在自己的一篇博文中解释了为什么选用6379作为默认端口，因为6379在手机按键上MERZ对应的号码，而MERZ取自意大利歌女Alessia Merz的名字</div><div class="line"></div><div class="line">    port 6379</div><div class="line"></div><div class="line">4. 绑定的主机地址</div><div class="line"></div><div class="line">    bind 127.0.0.1</div><div class="line"></div><div class="line">5.当 客户端闲置多长时间后关闭连接，如果指定为0，表示关闭该功能</div><div class="line"></div><div class="line">    timeout 300</div><div class="line"></div><div class="line">6. 指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为verbose</div><div class="line"></div><div class="line">    loglevel verbose</div><div class="line"></div><div class="line">7. 日志记录方式，默认为标准输出，如果配置Redis为守护进程方式运行，而这里又配置为日志记录方式为标准输出，则日志将会发送给/dev/null</div><div class="line"></div><div class="line">    logfile stdout</div><div class="line"></div><div class="line">8. 设置数据库的数量，默认数据库为0，可以使用SELECT &lt;dbid&gt;命令在连接上指定数据库id</div><div class="line"></div><div class="line">    databases 16</div><div class="line"></div><div class="line">9. 指定在多长时间内，有多少次更新操作，就将数据同步到数据文件，可以多个条件配合</div><div class="line"></div><div class="line">    save &lt;seconds&gt; &lt;changes&gt;</div><div class="line"></div><div class="line">    Redis默认配置文件中提供了三个条件：</div><div class="line"></div><div class="line">    save 900 1</div><div class="line"></div><div class="line">    save 300 10</div><div class="line"></div><div class="line">    save 60 10000</div><div class="line"></div><div class="line">    分别表示900秒（15分钟）内有1个更改，300秒（5分钟）内有10个更改以及60秒内有10000个更改。</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">10. 指定存储至本地数据库时是否压缩数据，默认为yes，Redis采用LZF压缩，如果为了节省CPU时间，可以关闭该选项，但会导致数据库文件变的巨大</div><div class="line"></div><div class="line">    rdbcompression yes</div><div class="line"></div><div class="line">11. 指定本地数据库文件名，默认值为dump.rdb</div><div class="line"></div><div class="line">    dbfilename dump.rdb</div><div class="line"></div><div class="line">12. 指定本地数据库存放目录</div><div class="line"></div><div class="line">    dir ./</div><div class="line"></div><div class="line">13. 设置当本机为slav服务时，设置master服务的IP地址及端口，在Redis启动时，它会自动从master进行数据同步</div><div class="line"></div><div class="line">    slaveof &lt;masterip&gt; &lt;masterport&gt;</div><div class="line"></div><div class="line">14. 当master服务设置了密码保护时，slav服务连接master的密码</div><div class="line"></div><div class="line">    masterauth &lt;master-password&gt;</div><div class="line"></div><div class="line">15. 设置Redis连接密码，如果配置了连接密码，客户端在连接Redis时需要通过AUTH &lt;password&gt;命令提供密码，默认关闭</div><div class="line"></div><div class="line">    requirepass foobared</div><div class="line"></div><div class="line">16. 设置同一时间最大客户端连接数，默认无限制，Redis可以同时打开的客户端连接数为Redis进程可以打开的最大文件描述符数，如果设置 maxclients 0，表示不作限制。当客户端连接数到达限制时，Redis会关闭新的连接并向客户端返回max number of clients reached错误信息</div><div class="line"></div><div class="line">    maxclients 128</div><div class="line"></div><div class="line">17. 指定Redis最大内存限制，Redis在启动时会把数据加载到内存中，达到最大内存后，Redis会先尝试清除已到期或即将到期的Key，当此方法处理 后，仍然到达最大内存设置，将无法再进行写入操作，但仍然可以进行读取操作。Redis新的vm机制，会把Key存放内存，Value会存放在swap区</div><div class="line"></div><div class="line">    maxmemory &lt;bytes&gt;</div><div class="line"></div><div class="line">18. 指定是否在每次更新操作后进行日志记录，Redis在默认情况下是异步的把数据写入磁盘，如果不开启，可能会在断电时导致一段时间内的数据丢失。因为 redis本身同步数据文件是按上面save条件来同步的，所以有的数据会在一段时间内只存在于内存中。默认为no</div><div class="line"></div><div class="line">    appendonly no</div><div class="line"></div><div class="line">19. 指定更新日志文件名，默认为appendonly.aof</div><div class="line"></div><div class="line">     appendfilename appendonly.aof</div><div class="line"></div><div class="line">20. 指定更新日志条件，共有3个可选值： </div><div class="line">    no：表示等操作系统进行数据缓存同步到磁盘（快） </div><div class="line">    always：表示每次更新操作后手动调用fsync()将数据写到磁盘（慢，安全） </div><div class="line">    everysec：表示每秒同步一次（折衷，默认值）</div><div class="line"></div><div class="line">    appendfsync everysec</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">21. 指定是否启用虚拟内存机制，默认值为no，简单的介绍一下，VM机制将数据分页存放，由Redis将访问量较少的页即冷数据swap到磁盘上，访问多的页面由磁盘自动换出到内存中（在后面的文章我会仔细分析Redis的VM机制）</div><div class="line"></div><div class="line">     vm-enabled no</div><div class="line"></div><div class="line">22. 虚拟内存文件路径，默认值为/tmp/redis.swap，不可多个Redis实例共享</div><div class="line"></div><div class="line">     vm-swap-file /tmp/redis.swap</div><div class="line"></div><div class="line">23. 将所有大于vm-max-memory的数据存入虚拟内存,无论vm-max-memory设置多小,所有索引数据都是内存存储的(Redis的索引数据 就是keys),也就是说,当vm-max-memory设置为0的时候,其实是所有value都存在于磁盘。默认值为0</div><div class="line"></div><div class="line">     vm-max-memory 0</div><div class="line"></div><div class="line">24. Redis swap文件分成了很多的page，一个对象可以保存在多个page上面，但一个page上不能被多个对象共享，vm-page-size是要根据存储的 数据大小来设定的，作者建议如果存储很多小对象，page大小最好设置为32或者64bytes；如果存储很大大对象，则可以使用更大的page，如果不 确定，就使用默认值</div><div class="line"></div><div class="line">     vm-page-size 32</div><div class="line"></div><div class="line">25. 设置swap文件中的page数量，由于页表（一种表示页面空闲或使用的bitmap）是在放在内存中的，，在磁盘上每8个pages将消耗1byte的内存。</div><div class="line"></div><div class="line">     vm-pages 134217728</div><div class="line"></div><div class="line">26. 设置访问swap文件的线程数,最好不要超过机器的核数,如果设置为0,那么所有对swap文件的操作都是串行的，可能会造成比较长时间的延迟。默认值为4</div><div class="line"></div><div class="line">     vm-max-threads 4</div><div class="line"></div><div class="line">27. 设置在向客户端应答时，是否把较小的包合并为一个包发送，默认为开启</div><div class="line"></div><div class="line">    glueoutputbuf yes</div><div class="line"></div><div class="line">28. 指定在超过一定的数量或者最大的元素超过某一临界值时，采用一种特殊的哈希算法</div><div class="line"></div><div class="line">    hash-max-zipmap-entries 64</div><div class="line"></div><div class="line">    hash-max-zipmap-value 512</div><div class="line"></div><div class="line">29. 指定是否激活重置哈希，默认为开启（后面在介绍Redis的哈希算法时具体介绍）</div><div class="line"></div><div class="line">    activerehashing yes</div><div class="line"></div><div class="line">30. 指定包含其它的配置文件，可以在同一主机上多个Redis实例之间使用同一份配置文件，而同时各个实例又拥有自己的特定配置文件</div><div class="line"></div><div class="line">    include /path/to/local.conf</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="下面先写个标题，空了补内容"><a href="#下面先写个标题，空了补内容" class="headerlink" title="下面先写个标题，空了补内容"></a>下面先写个标题，空了补内容</h2><h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><h3 id="服务启动"><a href="#服务启动" class="headerlink" title="服务启动"></a>服务启动</h3><h3 id="服务停止"><a href="#服务停止" class="headerlink" title="服务停止"></a>服务停止</h3><h3 id="客户端链接"><a href="#客户端链接" class="headerlink" title="客户端链接"></a>客户端链接</h3><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="操作字符串"><a href="#操作字符串" class="headerlink" title="操作字符串"></a>操作字符串</h3><h3 id="操作Hash"><a href="#操作Hash" class="headerlink" title="操作Hash"></a>操作Hash</h3><h3 id="操作集合"><a href="#操作集合" class="headerlink" title="操作集合"></a>操作集合</h3><h2 id="高级应用"><a href="#高级应用" class="headerlink" title="高级应用"></a>高级应用</h2><h3 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h3><h3 id="备份和恢复"><a href="#备份和恢复" class="headerlink" title="备份和恢复"></a>备份和恢复</h3><h3 id="性能及调优"><a href="#性能及调优" class="headerlink" title="性能及调优"></a>性能及调优</h3><h3 id="JAVA-API"><a href="#JAVA-API" class="headerlink" title="JAVA_API"></a>JAVA_API</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">给自己挖坑</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/27/2018-07-27-redis/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2018-07-27-dig-a-pit" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/27/2018-07-27-dig-a-pit/">给自己挖一个坑</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/27/2018-07-27-dig-a-pit/" class="archive-article-date">
+  	<time datetime="2018-07-27T02:59:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="突然想给自己挖一个坑，一个巨大无比的坑"><a href="#突然想给自己挖一个坑，一个巨大无比的坑" class="headerlink" title="突然想给自己挖一个坑，一个巨大无比的坑"></a>突然想给自己挖一个坑，一个巨大无比的坑</h1><h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p><a href="../../../../2018/07/27/2018-07-27-redis/">Redis</a></p>
+<h2 id="Mongodb"><a href="#Mongodb" class="headerlink" title="Mongodb"></a>Mongodb</h2><h2 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h2><h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><h2 id="Keepalived"><a href="#Keepalived" class="headerlink" title="Keepalived"></a>Keepalived</h2><h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">给自己挖坑</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/27/2018-07-27-dig-a-pit/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-2017-08-23-nodejs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -437,212 +609,6 @@
 
 
   
-    <article id="post-2017-08-21-https" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/21/2017-08-21-https/">Https单向认证和双向认证</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/21/2017-08-21-https/" class="archive-article-date">
-  	<time datetime="2017-08-21T12:47:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###一、Http</p>
-<p>HyperText Transfer Protocol，超文本传输协议，是互联网上使用最广泛的一种协议，所有WWW文件必须遵循的标准。HTTP协议传输的数据都是未加密的，也就是明文的，因此使用HTTP协议传输隐私信息非常不安全。</p>
-<p>使用TCP端口为：80</p>
-<p>###二、Https</p>
-<p>Hyper Text Transfer Protocol over Secure Socket Layer，安全的超文本传输协议，网景公式设计了SSL(Secure Sockets Layer)协议用于对Http协议传输的数据进行加密，保证会话过程中的安全性。</p>
-<p>使用TCP端口默认为443</p>
-<p>###三、SSL协议加密方式</p>
-<p>SSL协议即用到了对称加密也用到了非对称加密(公钥加密)，在建立传输链路时，SSL首先对对称加密的密钥使用公钥进行非对称加密，链路建立好之后，SSL对传输内容使用对称加密。</p>
-<ol>
-<li><p>对称加密<br>速度高，可加密内容较大，用来加密会话过程中的消息</p>
-</li>
-<li><p>公钥加密<br>加密速度较慢，但能提供更好的身份认证技术，用来加密对称加密的密钥</p>
-</li>
-</ol>
-<p>###四、单向认证<br><img src="/resources/15033193659422.jpg" alt=""></p>
-<p>Https在建立Socket连接之前，需要进行握手，具体过程如下：</p>
-<ol>
-<li>客户端向服务端发送SSL协议版本号、加密算法种类、随机数等信息。</li>
-<li>服务端给客户端返回SSL协议版本号、加密算法种类、随机数等信息，同时也返回服务器端的证书，即公钥证书</li>
-<li><p>客户端使用服务端返回的信息验证服务器的合法性，包括：<br> ○ 证书是否过期<br> ○ 发型服务器证书的CA是否可靠<br> ○ 返回的公钥是否能正确解开返回证书中的数字签名<br> ○ 服务器证书上的域名是否和服务器的实际域名相匹配<br>验证通过后，将继续进行通信，否则，终止通信</p>
-</li>
-<li><p>客户端向服务端发送自己所能支持的对称加密方案，供服务器端进行选择</p>
-</li>
-<li>服务器端在客户端提供的加密方案中选择加密程度最高的加密方式。</li>
-<li>服务器将选择好的加密方案通过明文方式返回给客户端</li>
-<li>客户端接收到服务端返回的加密方式后，使用该加密方式生成产生随机码，用作通信过程中对称加密的密钥，使用服务端返回的公钥进行加密，将加密后的随机码发送至服务器</li>
-<li>服务器收到客户端返回的加密信息后，使用自己的私钥进行解密，获取对称加密密钥。<br>在接下来的会话中，服务器和客户端将会使用该密码进行对称加密，保证通信过程中信息的安全。</li>
-</ol>
-<p>###五、双向认证</p>
-<p>双向认证和单向认证原理基本差不多，只是除了客户端需要认证服务端以外，增加了服务端对客户端的认证，具体过程如下：<br><img src="/resources/15033194048012.jpg" alt=""></p>
-<ol>
-<li>客户端向服务端发送SSL协议版本号、加密算法种类、随机数等信息。</li>
-<li>服务端给客户端返回SSL协议版本号、加密算法种类、随机数等信息，同时也返回服务器端的证书，即公钥证书</li>
-<li><p>客户端使用服务端返回的信息验证服务器的合法性，包括：<br> ○ 证书是否过期<br> ○ 发型服务器证书的CA是否可靠<br> ○ 返回的公钥是否能正确解开返回证书中的数字签名<br> ○ 服务器证书上的域名是否和服务器的实际域名相匹配<br>验证通过后，将继续进行通信，否则，终止通信</p>
-</li>
-<li><p>服务端要求客户端发送客户端的证书，客户端会将自己的证书发送至服务端</p>
-</li>
-<li>验证客户端的证书，通过验证后，会获得客户端的公钥</li>
-<li>客户端向服务端发送自己所能支持的对称加密方案，供服务器端进行选择</li>
-<li>服务器端在客户端提供的加密方案中选择加密程度最高的加密方式</li>
-<li>将加密方案通过使用之前获取到的公钥进行加密，返回给客户端</li>
-<li>客户端收到服务端返回的加密方案密文后，使用自己的私钥进行解密，获取具体加密方式，而后，产生该加密方式的随机码，用作加密过程中的密钥，使用之前从服务端证书中获取到的公钥进行加密后，发送给服务端</li>
-<li>服务端收到客户端发送的消息后，使用自己的私钥进行解密，获取对称加密的密钥，在接下来的会话中，服务器和客户端将会使用该密码进行对称加密，保证通信过程中信息的安全。</li>
-</ol>
-<p><a href="http://blog.csdn.net/duanbokan/article/details/50847612" target="_blank" rel="external">原文链接</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Https</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/21/2017-08-21-https/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2017-08-21-java-split" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/21/2017-08-21-java-split/">JAVA split 分割 字符串</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/21/2017-08-21-java-split/" class="archive-article-date">
-  	<time datetime="2017-08-21T11:59:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JAVA-split-分割-字符串"><a href="#JAVA-split-分割-字符串" class="headerlink" title="JAVA split 分割 字符串"></a>JAVA split 分割 字符串</h1><p>split在Java中肯定是个常用方法，用于字符串分割。用的多不代表用的好，一不小心就给自己挖坑了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String tmp = &quot;10.5.1.1&quot;;</div><div class="line">String resultStrings[] = tmp.split(&quot;.&quot;);</div><div class="line">if(&quot;1&quot;.equals(resultStrings[2])&#123;</div><div class="line">//Do Something</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>判断条件就是进不去，恩，调试一下发现，split没有正确分割。恍然大悟，原来是特殊字符的问题。<br>下面直接粘贴一段网上的内容吧：</p>
-<h3 id="【1】单个符号作为分隔符"><a href="#【1】单个符号作为分隔符" class="headerlink" title="【1】单个符号作为分隔符"></a>【1】单个符号作为分隔符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">String address=&quot;上海|上海市|闵行区|吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;\\|&quot;);//如果以竖线为分隔符，则split的时候需要加上两个斜杠【\\】进行转义</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div><div class="line"></div><div class="line"></div><div class="line">Stringaddress=&quot;上海*上海市*闵行区*吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;\\*&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div><div class="line"></div><div class="line"></div><div class="line">Stringaddress=&quot;上海:上海市:闵行区:吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;\\:&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div><div class="line"></div><div class="line"></div><div class="line">Stringaddress=&quot;上海.上海市.闵行区.吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;\\.&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div><div class="line"></div><div class="line">Stringaddress=&quot;上海^上海市^闵行区^吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;\\^&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div><div class="line"></div><div class="line"></div><div class="line">Stringaddress=&quot;上海@上海市@闵行区@吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;@&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div><div class="line"></div><div class="line"></div><div class="line">Stringaddress=&quot;上海,上海市,闵行区,吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;,&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div></pre></td></tr></table></figure>
-<h3 id="【2】多个符号作为分隔符"><a href="#【2】多个符号作为分隔符" class="headerlink" title="【2】多个符号作为分隔符"></a>【2】多个符号作为分隔符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String address=&quot;上海^上海市@闵行区#吴中路&quot;;</div><div class="line"></div><div class="line">String[]splitAddress=address.split(&quot;\\^|@|#&quot;);</div><div class="line"></div><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div></pre></td></tr></table></figure>
-<hr>
-<h3 id="格式小提示"><a href="#格式小提示" class="headerlink" title="格式小提示"></a>格式小提示</h3><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">String address = newString(&quot;192.168.13.240&quot;);</div><div class="line"></div><div class="line">String[] str = address.split(&quot;\\.&quot;);</div><div class="line"></div><div class="line">for(String s : str)&#123;</div><div class="line"></div><div class="line">System.out.println(s);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">输出格式：</div><div class="line"></div><div class="line">192</div><div class="line"></div><div class="line">168</div><div class="line"></div><div class="line">13</div><div class="line"></div><div class="line">240</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">System.out.println(splitAddress[0]+splitAddress[1]+splitAddress[2]+splitAddress[3]);</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">输出格式：上海上海市闵行区吴中路</div></pre></td></tr></table></figure>
-<hr>
-<p><strong>总结：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">（1）split表达式，其实就是一个正则表达式。*  ^ |等符号在正则表达式中属于一种有特殊含义的字符，如果使用此种字符作为分隔符，必须使用转义符即\\\加以转义。</div><div class="line"></div><div class="line">（2）如果使用多个分隔符则需要借助 |符号，如【2】所示，但需要转义符的仍然要加上分隔符进行处理。</div></pre></td></tr></table></figure>
-<p><a href="http://blog.sina.com.cn/s/blog_b6487d470101g0hp.html" target="_blank" rel="external">原文链接</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/21/2017-08-21-java-split/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -740,15 +706,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">常用工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Jekyll</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">常用工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -796,19 +762,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Json</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">常用命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Json</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -821,6 +787,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">给自己挖坑</a>
               </li>
             
             <div class="clearfix"></div>

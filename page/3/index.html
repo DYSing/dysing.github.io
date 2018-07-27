@@ -56,6 +56,8 @@
 			
 				<li><a href="/">主页</a></li>
 	        
+				<li><a href="/tags/给自己挖坑/">给自己挖坑</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -112,6 +114,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -132,7 +136,9 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 100%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="/tags/给自己挖坑/">给自己挖坑</a></li>
 		        
 				</ul>
 			</nav>
@@ -148,6 +154,200 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-2017-08-22-nginx" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/22/2017-08-22-nginx/">nginx 服务器重启、关闭命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/22/2017-08-22-nginx/" class="archive-article-date">
+  	<time datetime="2017-05-22T06:24:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="nginx-服务器重启、关闭命令"><a href="#nginx-服务器重启、关闭命令" class="headerlink" title="nginx 服务器重启、关闭命令"></a>nginx 服务器重启、关闭命令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nginx -s reload  ：修改配置后重新加载生效</div><div class="line">nginx -s reopen  ：重新打开日志文件</div><div class="line">nginx -t -c /path/to/nginx.conf 测试nginx配置文件是否正确</div></pre></td></tr></table></figure>
+<p>关闭nginx：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nginx -s stop  :快速停止nginx</div><div class="line">         quit  ：完整有序的停止nginx</div></pre></td></tr></table></figure>
+<p>其他的停止nginx 方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep nginx</div><div class="line"></div><div class="line">kill -QUIT 主进程号   ：从容停止Nginx</div><div class="line">kill -TERM 主进程号   ：快速停止Nginx</div><div class="line">pkill -9 nginx       ：强制停止Nginx</div></pre></td></tr></table></figure>
+<p>启动nginx:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -c /path/to/nginx.conf</div></pre></td></tr></table></figure>
+<p>平滑重启nginx：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kill -HUP 主进程号</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">常用命令</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Nginx//" class="article-tag-list-link color1">Nginx</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/22/2017-08-22-nginx/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2016-03-31-car" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/31/2016-03-31-car/">倒车技巧!</a>
+    </h1>
+  
+
+        
+        <a href="/2016/03/31/2016-03-31-car/" class="archive-article-date">
+  	<time datetime="2016-03-31T15:05:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 之前刚学车的时候，倒车总找不好方向，在网上看到了这组图片，受益匪浅故保存在电脑上，现在分享出来希望能给更多的人以帮助，十分感谢原作者。</p>
+<h2 id="第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。"><a href="#第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。" class="headerlink" title="第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。"></a>第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。</h2><p><img src="/resources/20160331/car1.gif" alt="car1"></p>
+<hr>
+<h2 id="第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央"><a href="#第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央" class="headerlink" title="第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央"></a>第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央</h2><p><img src="/resources/20160331/car2.gif" alt="car2"></p>
+<hr>
+<h2 id="第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”-这种方式带来的好处就是-使汽车进入非常狭小的空间"><a href="#第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”-这种方式带来的好处就是-使汽车进入非常狭小的空间" class="headerlink" title="第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”,这种方式带来的好处就是-使汽车进入非常狭小的空间"></a>第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”,这种方式带来的好处就是-使汽车进入非常狭小的空间</h2><p><img src="/resources/20160331/car3.gif" alt="car3"></p>
+<hr>
+<h2 id="第四：你不可能以前进的方式进入，因为后轮不能左右移动"><a href="#第四：你不可能以前进的方式进入，因为后轮不能左右移动" class="headerlink" title="第四：你不可能以前进的方式进入，因为后轮不能左右移动"></a>第四：你不可能以前进的方式进入，因为后轮不能左右移动</h2><p><img src="/resources/20160331/car4.gif" alt="car4"></p>
+<hr>
+<h2 id="第五：相反，你却可以后退进入狭小的空间。"><a href="#第五：相反，你却可以后退进入狭小的空间。" class="headerlink" title="第五：相反，你却可以后退进入狭小的空间。"></a>第五：相反，你却可以后退进入狭小的空间。</h2><p><img src="/resources/20160331/car5.gif" alt="car5"></p>
+<hr>
+<h2 id="第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。"><a href="#第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。" class="headerlink" title="第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。"></a>第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。</h2><p><img src="/resources/20160331/car6.gif" alt="car6"></p>
+<hr>
+<h2 id="第七：倒车要点一，后轮的位置，如下图。"><a href="#第七：倒车要点一，后轮的位置，如下图。" class="headerlink" title="第七：倒车要点一，后轮的位置，如下图。"></a>第七：倒车要点一，后轮的位置，如下图。</h2><p><img src="/resources/20160331/car7.gif" alt="car7"></p>
+<hr>
+<h2 id="第八：倒车要点二，贴近障碍物，如下图"><a href="#第八：倒车要点二，贴近障碍物，如下图" class="headerlink" title="第八：倒车要点二，贴近障碍物，如下图"></a>第八：倒车要点二，贴近障碍物，如下图</h2><p><img src="/resources/20160331/car8.gif" alt="car8"></p>
+<hr>
+<h2 id="第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。"><a href="#第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。" class="headerlink" title="第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。"></a>第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。</h2><p><img src="/resources/20160331/car9.gif" alt="car9"></p>
+<hr>
+<h2 id="第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。"><a href="#第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。" class="headerlink" title="第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。"></a>第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。</h2><p><img src="/resources/20160331/car10.gif" alt="car10"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Car</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">生活小技巧</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/31/2016-03-31-car/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-2016-03-29-tcp-chinese-garbled" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -404,211 +604,6 @@
 
 
   
-    <article id="post-2016-03-18-how-to-setup-jekyll-on-windows" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/18/2016-03-18-how-to-setup-jekyll-on-windows/">Jekyll on Windows!</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/18/2016-03-18-how-to-setup-jekyll-on-windows/" class="archive-article-date">
-  	<time datetime="2016-03-18T06:45:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Jekyll本地环境搭建"><a href="#Jekyll本地环境搭建" class="headerlink" title="Jekyll本地环境搭建"></a>Jekyll本地环境搭建</h1><p>Jekyll<a href="http://baike.baidu.com/link?url=YtmFI-QbclJtL50XZwNvy1jLOVV-irjUYnt5WpFoo5YHIgkICK_EuILhZfHqgPQz9Zdxig7q40SWdH6dweZzka" target="_blank" rel="external">百度百科</a></p>
-<p>必装：</p>
-<p>-Ruby &amp; Ruby Development Kit</p>
-<p>-Jekyll</p>
-<p>选装：</p>
-<p>-Python</p>
-<p>-Pygments</p>
-<p>1.下载Ruby和Ruby Development Kit安装包<a href="http://rubyinstaller.org/downloads/" target="_blank" rel="external">下载地址</a>。</p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup1.jpg" alt="RubySetup1"></p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup2.jpg" alt="RubySetup2"></p>
-<p>根据自己电脑情况选择32位还是64位</p>
-<p>2.安装刚才下载的<code>RubyInstalller-2.2.2-x64.exe</code>语言只能在英语和日语中选择</p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup3.jpg" alt="RubySetup3"></p>
-<p>3.记得要选中这个框，不然要手工增加Ruby的环境变量</p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup4.jpg" alt="RubySetup4"></p>
-<p>4.安装结束后，在CMD窗口输入<code>ruby -v</code>如果出现下图所示版本信息则表示安装成功</p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup5.jpg" alt="RubySetup5"></p>
-<p>默认安装的话会在C盘根目录生成文件夹，如<code>C:\Ruby22-x64</code></p>
-<p>5.解压<code>Ruby Development Kit</code>程序包</p>
-<p>6.CMD窗口切换至Ruby Development Kit解压的目录并执行</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby dk.rb init</div></pre></td></tr></table></figure>
-<p>7.打开<code>config.yml</code>内容大概如下</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># This configuration file contains the absolute path locations of all</span></div><div class="line"><span class="comment"># installed Rubies to be enhanced to work with the DevKit. This config</span></div><div class="line"><span class="comment"># file is generated by the 'ruby dk.rb init' step and may be modified</span></div><div class="line"><span class="comment"># before running the 'ruby dk.rb install' step. To include any installed</span></div><div class="line"><span class="comment"># Rubies that were not automagically discovered, simply add a line below</span></div><div class="line"><span class="comment"># the triple hyphens with the absolute path to the Ruby root directory.</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Example:</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># ---</span></div><div class="line"><span class="comment"># - C:/ruby19trunk</span></div><div class="line"><span class="comment"># - C:/ruby192dev</span></div><div class="line"><span class="comment">#</span></div><div class="line">---</div><div class="line">- <span class="symbol">C:</span>\Ruby22-x64</div></pre></td></tr></table></figure>
-<p>如果下面没有你Ruby的安装目录，就自己加上，别忘了前面有一个<code>-</code></p>
-<p>8.继续在CMD窗口执行<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby dk.rb install</div></pre></td></tr></table></figure></p>
-<p>9.安装成功后你就可以使用<code>gem</code>来安装<code>jekyll</code>了</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem install jekyll</div></pre></td></tr></table></figure>
-<p>10.成功安装jekyll后就可以尝试启动服务了</p>
-<p>10.1打开CMD窗口，切换到你打算创建项目的文件夹，执行</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jekyll new myblog</div></pre></td></tr></table></figure>
-<p>其中<code>myblog</code>是项目文件夹的名称</p>
-<p>10.2进入项目文件夹</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd myblog</div></pre></td></tr></table></figure>
-<p>10.3执行</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jekyll serve</div></pre></td></tr></table></figure>
-<p>现在，打开浏览器访问<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a></p>
-<p>11.选装部分请自行探索如果有必要以后我单独再写一下怎么操作。</p>
-<p>现在为什么不写呢，见下图</p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup6.jpg" alt="RubySetup6"></p>
-<p><a href="https://help.github.com/articles/page-build-failed-config-file-error/#fixing-highlighting-errors." target="_blank" rel="external">Fixing highlighting errors</a></p>
-<h1 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h1><p>-考虑到gem默认源在国外，可能速度比较慢甚至无法使用，准备使用淘宝提供的镜像地址，不过在添加的时候报错，看内容和SSL有关。<br></p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup7.jpg" alt="RubySetup7"></p>
-<p>在网上找到一个<a href="http://blog.csdn.net/leorowe/article/details/41968349" target="_blank" rel="external">解决方法</a>不过试了一下无效……</p>
-<p>所以就使用了山东大学的镜像源，谁让人家是http呢</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem sources -a <span class="symbol">http:</span>/<span class="regexp">/ruby.sdutlinux.org/</span></div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Jekyll</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/18/2016-03-18-how-to-setup-jekyll-on-windows/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2015-05-18-maven" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/18/2015-05-18-maven/">Maven 控制台输出内容乱码</a>
-    </h1>
-  
-
-        
-        <a href="/2015/05/18/2015-05-18-maven/" class="archive-article-date">
-  	<time datetime="2015-05-18T07:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-05-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Maven-执行Test时控制台输出中文乱码原因分析及解决方法"><a href="#Maven-执行Test时控制台输出中文乱码原因分析及解决方法" class="headerlink" title="Maven 执行Test时控制台输出中文乱码原因分析及解决方法"></a>Maven 执行Test时控制台输出中文乱码原因分析及解决方法</h1><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>今天下午使用Maven构建项目时，运行测试失败，查看出错原因时发现控制台输出如下图</p><br><img src="/resources/20150518/maven1.jpg" alt="Maven控制台乱码1"><br><br>## 经过<br><br><p>Google一下以后发现<a href="http://monsoongale.iteye.com/blog/1028926" target="_blank" rel="external">maven-surefire-plugin的乱码问题</a><br>目测跟我遇到的原因相同，这里直接把主要内容复制过来</p>
-
-<blockquote>
-<p>究其原因,是因为MAVEN的maven-surefire-plugin在新建JVM进程后,由于没有指定encoding,采用了OS的默认编码,导致读取UTF-8文件(测试类的sql脚本文件)时出现乱码,最终影响了TestNG的正确执行.</p>
-</blockquote>
-<p>具体原因如下：</p>
-
-<blockquote>
-<p>maven-surefire-plugin是运行mvn test时执行测试的插件,其有一个配置参数forkMode,默认为once,即表示每次运行test时,新建一个JVM进程运行所有test.这可能会导致乱码问题.首先将forkMode设置为never,即不新建.再运行mvn test,全部OK了.果然是这个问题!!<br>于是再找官方参数说明,发现了argLine参数,这个参数与forkMode一起使用,可以设置新建JVM时的JVM启动参数,于是设置<argline>-Dfile.encoding=UTF-8</argline>,明确指定一下JVM的file.encoding,并将forkMode从never改回once,还是每次新建一个JVM进程.再次运行mvn test,一起OK了,问题解决.</p>
-</blockquote>
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>修改后的pom.xml</p>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!-- 解决maven test命令时console出现中文乱码乱码 --&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">forkMode</span>&gt;</span>once<span class="tag">&lt;/<span class="name">forkMode</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">argLine</span>&gt;</span>-Dfile.encoding=UTF-8<span class="tag">&lt;/<span class="name">argLine</span>&gt;</span> </div><div class="line">			<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure>
-<p></p><p>重点是</p><br><code>&lt;argLine&gt;-Dfile.encoding=UTF-8&lt;/argLine&gt;</code><p></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Maven</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/05/18/2015-05-18-maven/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -706,15 +701,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">常用工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Jekyll</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">常用工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -762,19 +757,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Json</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">常用命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Json</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -787,6 +782,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">给自己挖坑</a>
               </li>
             
             <div class="clearfix"></div>
