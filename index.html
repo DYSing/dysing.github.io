@@ -56,8 +56,6 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -114,8 +112,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -136,9 +132,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -186,13 +180,24 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Nodejs</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/nodejs-macos//" class="article-tag-list-link color3">nodejs macos</a>
+        			<a href="/categories/MacOS//" class="article-tag-list-link color1">MacOS</a>
         		</li>
       		
 		</ul>
@@ -267,6 +272,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Soupui</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Wsdl</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
@@ -358,11 +378,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Json</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -490,6 +510,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Https</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -567,6 +598,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -601,411 +643,9 @@
 
 
   
-    <article id="post-2017-08-21-oracle-plsql-chr38" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/21/2017-08-21-oracle-plsql-chr38/">PLSQL工具查询含有&amp;符的SQL</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/21/2017-08-21-oracle-plsql-chr38/" class="archive-article-date">
-  	<time datetime="2017-08-21T11:49:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="plsql查询语句占位符提示输入值"><a href="#plsql查询语句占位符提示输入值" class="headerlink" title="plsql查询语句占位符提示输入值"></a>plsql查询语句占位符提示输入值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select * from tmp where a = &apos;&amp;a&apos;;</div></pre></td></tr></table></figure>
-<p><img src="/resources/15033163076611.jpg" alt=""></p>
-<p> 解决方式:<br> 把<code>&amp;</code>替换成<code>chr(38)</code></p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> select * from tmp where a = &apos;chr(38)a&apos;;</div></pre></td></tr></table></figure>
-<p>利用<code>&amp;</code>可以将常用查询语句中的条件作为变量，每次执行SQL进行赋值，提高效率。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/21/2017-08-21-oracle-plsql-chr38/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2017-08-21-linux-redis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/21/2017-08-21-linux-redis/">Linux环境下Redis安装搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/21/2017-08-21-linux-redis/" class="archive-article-date">
-  	<time datetime="2017-08-21T11:11:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Linux环境下Redis安装搭建"><a href="#Linux环境下Redis安装搭建" class="headerlink" title="Linux环境下Redis安装搭建"></a>Linux环境下Redis安装搭建</h1><p>可以提前准备Redis安装包，下载地址如下：</p>
-<p><code>https://redis.io/download</code><br>或者下载源码进行编译，以下为通过源码编译的步骤：</p>
-<p>1、下载源码，解压缩后编译源码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ wget http://download.redis.io/releases/redis-4.0.1.tar.gz</div><div class="line">$ tar xzf redis-4.0.1.tar.gz</div><div class="line">$ cd redis-4.0.1</div><div class="line">$ make</div></pre></td></tr></table></figure>
-<p>2、编译完成后，启动redis服务</p>
-<p><code>$ src/redis-server</code></p>
-<p>特别的，在一般的生产环境中，需要后台运行redis服务，所以需要修改redis配置文件方法如下：<br>在安装redis之后，我们可以可以找到一个叫<code>redis.conf</code>的文件，通过<code>vi</code>命令打开：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi redis.conf</div></pre></td></tr></table></figure></p>
-<p>找到<code>redis.conf</code>文件的<code>daemonize no</code>处<br>修改为<code>daemonize yes</code></p>
-<p>然后启动redis服务（启动方式和之前不同）</p>
-<p><code>./redis-server ../redis.conf</code></p>
-<p>成功运行</p>
-<p><strong>补充</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Redis采用的是单进程多线程的模式。</div><div class="line">当redis.conf中选项daemonize设置成yes时，代表开启守护进程模式。</div><div class="line">在该模式下，redis会在后台运行，并将进程pid号写入至redis.conf选项pidfile设置的文件中，此时redis将一直运行，除非手动kill该进程。</div><div class="line">但当daemonize选项设置成no时，当前界面将进入redis的命令行界面，exit强制退出或者关闭连接工具(putty,xshell等)都会导致redis进程退出。</div></pre></td></tr></table></figure>
-<p><strong>服务端开发的大部分应用都是采用后台运行的模式</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Redis-Linux//" class="article-tag-list-link color2">Redis,Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/21/2017-08-21-linux-redis/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2017-08-21-mac-maven" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/21/2017-08-21-mac-maven/">Mac OS X 安装Maven</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/21/2017-08-21-mac-maven/" class="archive-article-date">
-  	<time datetime="2017-08-21T07:51:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Mac-OS-X-安装Maven"><a href="#Mac-OS-X-安装Maven" class="headerlink" title="Mac OS X 安装Maven:"></a>Mac OS X 安装Maven:</h1><ul>
-<li>下载 <a href="https://maven.apache.org/download.cgi" target="_blank" rel="external">Maven</a>, 并解压到某个目录。例如/Users/Runtime/apache-maven-3.5.0</li>
-</ul>
-<h3 id="System-Requirements"><a href="#System-Requirements" class="headerlink" title="System Requirements"></a>System Requirements</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Java Development Kit (JDK)	Maven 3.3+ require JDK 1.7 or above to execute - they still allows you to build against 1.3 and other JDK versions by Using Toolchains</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Memory	No minimum requirement</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Disk	Approximately 10MB is required for the Maven installation itself. In addition to that, additional disk space will be used for your local Maven repository. The size of your local repository will vary depending on usage but expect at least 500MB.</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Operating System	No minimum requirement. Start up scripts are included as shell scripts and Windows batch files.</div></pre></td></tr></table></figure>
-<ul>
-<li>打开<code>Terminal</code>,输入以下命令，设置<code>Maven classpath</code></li>
-</ul>
-<p><code>$ vi ~/.bash_profile</code></p>
-<ul>
-<li>添加下列两行代码，之后保存并退出<code>Vi</code>：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export M2_HOME=/Users/Runtime/apache-maven-3.5.0 </div><div class="line">export PATH=$PATH:$M2_HOME/bin</div></pre></td></tr></table></figure>
-<ul>
-<li>输入命令以使<code>bash_profile</code>生效</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ source ~/.bash_profile</div></pre></td></tr></table></figure>
-<ul>
-<li>输入<code>mvn -v</code>查看Maven是否安装成功</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/21/2017-08-21-mac-maven/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2017-08-22-nginx" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/22/2017-08-22-nginx/">nginx 服务器重启、关闭命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/22/2017-08-22-nginx/" class="archive-article-date">
-  	<time datetime="2017-05-22T06:24:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="nginx-服务器重启、关闭命令"><a href="#nginx-服务器重启、关闭命令" class="headerlink" title="nginx 服务器重启、关闭命令"></a>nginx 服务器重启、关闭命令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nginx -s reload  ：修改配置后重新加载生效</div><div class="line">nginx -s reopen  ：重新打开日志文件</div><div class="line">nginx -t -c /path/to/nginx.conf 测试nginx配置文件是否正确</div></pre></td></tr></table></figure>
-<p>关闭nginx：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nginx -s stop  :快速停止nginx</div><div class="line">         quit  ：完整有序的停止nginx</div></pre></td></tr></table></figure>
-<p>其他的停止nginx 方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep nginx</div><div class="line"></div><div class="line">kill -QUIT 主进程号   ：从容停止Nginx</div><div class="line">kill -TERM 主进程号   ：快速停止Nginx</div><div class="line">pkill -9 nginx       ：强制停止Nginx</div></pre></td></tr></table></figure>
-<p>启动nginx:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -c /path/to/nginx.conf</div></pre></td></tr></table></figure>
-<p>平滑重启nginx：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kill -HUP 主进程号</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/nginx//" class="article-tag-list-link color1">nginx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/22/2017-08-22-nginx/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2016-03-31-car" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/31/2016-03-31-car/">倒车技巧!</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/31/2016-03-31-car/" class="archive-article-date">
-  	<time datetime="2016-03-31T15:05:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> 之前刚学车的时候，倒车总找不好方向，在网上看到了这组图片，受益匪浅故保存在电脑上，现在分享出来希望能给更多的人以帮助，十分感谢原作者。</p>
-<h2 id="第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。"><a href="#第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。" class="headerlink" title="第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。"></a>第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。</h2><p><img src="/resources/20160331/car1.gif" alt="car1"></p>
-<hr>
-<h2 id="第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央"><a href="#第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央" class="headerlink" title="第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央"></a>第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央</h2><p><img src="/resources/20160331/car2.gif" alt="car2"></p>
-<hr>
-<h2 id="第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”-这种方式带来的好处就是-使汽车进入非常狭小的空间"><a href="#第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”-这种方式带来的好处就是-使汽车进入非常狭小的空间" class="headerlink" title="第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”,这种方式带来的好处就是-使汽车进入非常狭小的空间"></a>第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”,这种方式带来的好处就是-使汽车进入非常狭小的空间</h2><p><img src="/resources/20160331/car3.gif" alt="car3"></p>
-<hr>
-<h2 id="第四：你不可能以前进的方式进入，因为后轮不能左右移动"><a href="#第四：你不可能以前进的方式进入，因为后轮不能左右移动" class="headerlink" title="第四：你不可能以前进的方式进入，因为后轮不能左右移动"></a>第四：你不可能以前进的方式进入，因为后轮不能左右移动</h2><p><img src="/resources/20160331/car4.gif" alt="car4"></p>
-<hr>
-<h2 id="第五：相反，你却可以后退进入狭小的空间。"><a href="#第五：相反，你却可以后退进入狭小的空间。" class="headerlink" title="第五：相反，你却可以后退进入狭小的空间。"></a>第五：相反，你却可以后退进入狭小的空间。</h2><p><img src="/resources/20160331/car5.gif" alt="car5"></p>
-<hr>
-<h2 id="第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。"><a href="#第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。" class="headerlink" title="第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。"></a>第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。</h2><p><img src="/resources/20160331/car6.gif" alt="car6"></p>
-<hr>
-<h2 id="第七：倒车要点一，后轮的位置，如下图。"><a href="#第七：倒车要点一，后轮的位置，如下图。" class="headerlink" title="第七：倒车要点一，后轮的位置，如下图。"></a>第七：倒车要点一，后轮的位置，如下图。</h2><p><img src="/resources/20160331/car7.gif" alt="car7"></p>
-<hr>
-<h2 id="第八：倒车要点二，贴近障碍物，如下图"><a href="#第八：倒车要点二，贴近障碍物，如下图" class="headerlink" title="第八：倒车要点二，贴近障碍物，如下图"></a>第八：倒车要点二，贴近障碍物，如下图</h2><p><img src="/resources/20160331/car8.gif" alt="car8"></p>
-<hr>
-<h2 id="第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。"><a href="#第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。" class="headerlink" title="第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。"></a>第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。</h2><p><img src="/resources/20160331/car9.gif" alt="car9"></p>
-<hr>
-<h2 id="第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。"><a href="#第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。" class="headerlink" title="第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。"></a>第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。</h2><p><img src="/resources/20160331/car10.gif" alt="car10"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/31/2016-03-31-car/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1100,15 +740,87 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" class="js-tag color5">常用工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Jekyll</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Diablo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Google</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Tcp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">乱码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Car</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">生活小技巧</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Https</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">PlSql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Json</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">常用命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Soupui</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Wsdl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Nodejs</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1191,7 +903,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;直接用了别人的主题&lt;br&gt;文章也是笔记简单整理的&lt;br&gt;以后会努力写点自己的东西&lt;br&gt;&lt;br&gt;谢谢大家</div>
   	  	
     	</section>
     

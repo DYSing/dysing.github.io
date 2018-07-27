@@ -56,8 +56,6 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -114,8 +112,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -136,9 +132,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -155,33 +149,31 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-2016-03-29-tcp-chinese-garbled" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2017-08-21-oracle-plsql-chr38" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/29/2016-03-29-tcp-chinese-garbled/">JAVA TCP通讯中文乱码</a>
+      <a class="article-title" href="/2017/08/21/2017-08-21-oracle-plsql-chr38/">PLSQL工具查询含有&amp;符的SQL</a>
     </h1>
   
 
         
-        <a href="/2016/03/29/2016-03-29-tcp-chinese-garbled/" class="archive-article-date">
-  	<time datetime="2016-03-29T14:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-29</time>
+        <a href="/2017/08/21/2017-08-21-oracle-plsql-chr38/" class="archive-article-date">
+  	<time datetime="2017-08-21T11:49:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Java-Socket通讯中中文乱码"><a href="#Java-Socket通讯中中文乱码" class="headerlink" title="Java Socket通讯中中文乱码"></a>Java Socket通讯中中文乱码</h2><p>今天写了一个Java 的Tcp小程序，调试时发现服务端接收到的中文显示为乱码。<br><br>想了想，Java中对于输入输出都是流的概念。服务端也是通过</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">socket.getInputStream();</div></pre></td></tr></table></figure>
-<p>获取信息。通常中文乱码就是字符集的问题。</p>
-<p>综上，可以把输入流转换为<code>InputStreamReader</code>同时指定字符集来避免乱码的出现。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(socket.getInputStream(),<span class="string">"UTF-8"</span>));</div></pre></td></tr></table></figure>
-<p>输出流同理</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">BufferedWriter bufferWriter = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(socket.getOutputStream(),<span class="string">"UTF-8"</span>));</div></pre></td></tr></table></figure>
+        <h1 id="plsql查询语句占位符提示输入值"><a href="#plsql查询语句占位符提示输入值" class="headerlink" title="plsql查询语句占位符提示输入值"></a>plsql查询语句占位符提示输入值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select * from tmp where a = &apos;&amp;a&apos;;</div></pre></td></tr></table></figure>
+<p><img src="/resources/15033163076611.jpg" alt=""></p>
+<p> 解决方式:<br> 把<code>&amp;</code>替换成<code>chr(38)</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> select * from tmp where a = &apos;chr(38)a&apos;;</div></pre></td></tr></table></figure>
+<p>利用<code>&amp;</code>可以将常用查询语句中的条件作为变量，每次执行SQL进行赋值，提高效率。</p>
 
       
 
@@ -190,11 +182,26 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">常用工具</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">PlSql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/29/2016-03-29-tcp-chinese-garbled/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/21/2017-08-21-oracle-plsql-chr38/">展开全文 >></a>
         </p>
       
 
@@ -224,29 +231,40 @@
 
 
   
-    <article id="post-2016-03-24-google-holi-festival" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2017-08-21-linux-redis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/24/2016-03-24-google-holi-festival/">谷歌侯丽节彩蛋</a>
+      <a class="article-title" href="/2017/08/21/2017-08-21-linux-redis/">Linux环境下Redis安装搭建</a>
     </h1>
   
 
         
-        <a href="/2016/03/24/2016-03-24-google-holi-festival/" class="archive-article-date">
-  	<time datetime="2016-03-24T02:41:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-24</time>
+        <a href="/2017/08/21/2017-08-21-linux-redis/" class="archive-article-date">
+  	<time datetime="2017-08-21T11:11:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="今日谷歌彩蛋"><a href="#今日谷歌彩蛋" class="headerlink" title="今日谷歌彩蛋"></a>今日谷歌彩蛋</h2><p><a href="https://zh.wikipedia.org/wiki/%E4%BE%AF%E4%B8%BD%E8%8A%82" target="_blank" rel="external">侯丽节 wiki</a>,<br><a href="https://en.wikipedia.org/wiki/Holi" target="_blank" rel="external">Holi wiki</a></p>
-<p><img src="/resources/20160324/holi-festival-2016-4796769118453760-hp.gif" alt="GoogleLogo"></p>
-<p>今天打开<a href="www.google.com.hk">Google</a>首页，一个很漂亮的彩蛋，Google在各种节日上献上彩蛋早已不是新鲜事了。<br><br>不知道是不是职业病，我第一反应居然是：哦豁，这个效果不错，JS实现还是CSS3.0咧？<br><br>遂右键，审查元素，恩，映入眼帘的<code>.GIF</code>文件，呃……好吧</p>
+        <h1 id="Linux环境下Redis安装搭建"><a href="#Linux环境下Redis安装搭建" class="headerlink" title="Linux环境下Redis安装搭建"></a>Linux环境下Redis安装搭建</h1><p>可以提前准备Redis安装包，下载地址如下：</p>
+<p><code>https://redis.io/download</code><br>或者下载源码进行编译，以下为通过源码编译的步骤：</p>
+<p>1、下载源码，解压缩后编译源码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ wget http://download.redis.io/releases/redis-4.0.1.tar.gz</div><div class="line">$ tar xzf redis-4.0.1.tar.gz</div><div class="line">$ cd redis-4.0.1</div><div class="line">$ make</div></pre></td></tr></table></figure>
+<p>2、编译完成后，启动redis服务</p>
+<p><code>$ src/redis-server</code></p>
+<p>特别的，在一般的生产环境中，需要后台运行redis服务，所以需要修改redis配置文件方法如下：<br>在安装redis之后，我们可以可以找到一个叫<code>redis.conf</code>的文件，通过<code>vi</code>命令打开：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi redis.conf</div></pre></td></tr></table></figure></p>
+<p>找到<code>redis.conf</code>文件的<code>daemonize no</code>处<br>修改为<code>daemonize yes</code></p>
+<p>然后启动redis服务（启动方式和之前不同）</p>
+<p><code>./redis-server ../redis.conf</code></p>
+<p>成功运行</p>
+<p><strong>补充</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Redis采用的是单进程多线程的模式。</div><div class="line">当redis.conf中选项daemonize设置成yes时，代表开启守护进程模式。</div><div class="line">在该模式下，redis会在后台运行，并将进程pid号写入至redis.conf选项pidfile设置的文件中，此时redis将一直运行，除非手动kill该进程。</div><div class="line">但当daemonize选项设置成no时，当前界面将进入redis的命令行界面，exit强制退出或者关闭连接工具(putty,xshell等)都会导致redis进程退出。</div></pre></td></tr></table></figure>
+<p><strong>服务端开发的大部分应用都是采用后台运行的模式</strong></p>
 
       
 
@@ -255,11 +273,37 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Redis-Linux//" class="article-tag-list-link color2">Redis,Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/24/2016-03-24-google-holi-festival/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/21/2017-08-21-linux-redis/">展开全文 >></a>
         </p>
       
 
@@ -289,44 +333,249 @@
 
 
   
-    <article id="post-2016-03-22-Diablo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2017-08-21-mac-maven" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/22/2016-03-22-Diablo/">暗黑破坏神2游戏任务完全攻略</a>
+      <a class="article-title" href="/2017/08/21/2017-08-21-mac-maven/">Mac OS X 安装Maven</a>
     </h1>
   
 
         
-        <a href="/2016/03/22/2016-03-22-Diablo/" class="archive-article-date">
-  	<time datetime="2016-03-22T12:16:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-22</time>
+        <a href="/2017/08/21/2017-08-21-mac-maven/" class="archive-article-date">
+  	<time datetime="2017-08-21T07:51:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="刚刚在整理历史笔记，偶然间发现还存了大菠萝IIDiablo-II的攻略"><a href="#刚刚在整理历史笔记，偶然间发现还存了大菠萝IIDiablo-II的攻略" class="headerlink" title="刚刚在整理历史笔记，偶然间发现还存了大菠萝IIDiablo II的攻略"></a>刚刚在整理历史笔记，偶然间发现还存了<code>大菠萝II</code><em>Diablo II</em>的攻略</h2><h3 id="虽然是纯文本，没有一张图片，看着一个个熟悉的地名、人名。自行脑补了整个故事的脉络不知道是在怀念游戏本身，还是玩游戏时的青春呢？"><a href="#虽然是纯文本，没有一张图片，看着一个个熟悉的地名、人名。自行脑补了整个故事的脉络不知道是在怀念游戏本身，还是玩游戏时的青春呢？" class="headerlink" title="虽然是纯文本，没有一张图片，看着一个个熟悉的地名、人名。自行脑补了整个故事的脉络不知道是在怀念游戏本身，还是玩游戏时的青春呢？"></a>虽然是纯文本，没有一张图片，看着一个个熟悉的地名、人名。自行脑补了整个故事的脉络<br>不知道是在怀念游戏本身，还是玩游戏时的青春呢？</h3><p><strong>以下内容来源于网络</strong></p>
-<p><img src="/resources/20160322/diablo.jpg" alt="Diablo"></p>
-<p></p><p>前言：本攻略分为两个部分，分别都对游戏任务进行了全程描述。两部分的区别在于：第一部分用的是比较正式的描述方式，客观准确地向读者介绍了全部任务流程；而第二部分用的是通俗版的描述方式，区别是加入了作者的个人感触和评价。作为一个新手来说，我对于你只阅读一个版本攻略就能够顺利流畅的完成游戏表示怀疑，因此我编辑了2个版本的攻略，便于你对照阅读。希望游戏顺利。</p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">第一部分：任务攻略经典版</div><div class="line">　　第一幕:罗格营地 </div><div class="line"></div><div class="line">　　任务一:Den Of Evil邪恶洞穴　　 </div><div class="line">　　开始后,去找阿卡拉(Akara)女巫。她告诉你说她是这里的头头，所以想要立足就要得到她的信任，要你去闯营地外的一个洞穴。在外面找到阿卡拉说的洞穴，‘抢掠一空‘后去找她领赏。　　 </div><div class="line">　　任务奖励：一点技能值。 </div><div class="line">　　任务难度：☆ </div><div class="line"></div><div class="line">　　任务二：Sister‘s Burial Grounds修女埋骨之地　　 </div><div class="line">　　完成阿卡拉的任务后，去找卡夏（Kashya）她要你去找叛徒Blood Raven。在石槐旷野找到一片坟墓，上面站着叛徒血乌鸦Blood Raven，杀了她，找卡夏领赏！呵呵，说一句，血乌鸦可不是等闲之辈，再加上一大队饥饿死者……　　 </div><div class="line">　　任务奖励：一名罗格佣兵。 </div><div class="line">　　任务难度：☆☆☆ </div><div class="line"></div><div class="line">　　任务三:The Search For Cain凯恩的搜寻　　 </div><div class="line">　　找阿卡拉，又给了你一个任务（麻烦），救凯恩Cain，她说要你穿过洞穴通道（Underground Passage），到黑暗森林(Dark wood）找到艾尼弗斯（Inifuss）大树，搞到卷轴 </div><div class="line">，然后回来找她。之后她会给你翻译，按照画上的顺序，摸五根石柱，之后会出现一个传送门，通过它到达崔斯特拉母（Tristram），砍到一个掉笼里头，放了凯恩，这家伙自己逃了，连声谢谢都不说。回到罗格营地领赏去吧！　　 </div><div class="line">　　任务奖励：凯恩可以鉴定物品，阿卡拉卖药打九折。 </div><div class="line">任务难度：☆☆ </div><div class="line"></div><div class="line">　　任务四：The Forgotten Tower被遗忘的高塔　　 </div><div class="line">　　在执行上一个任务时会看到一本书,打开它触发此任务。从Dark wood黑暗森林可以到达Black marlus，黑色荒地。在一处象古堡类的围墙内，有一个梯子，沿着它进入塔内。共五层。敌人不是很强。第五层遇见女伯爵，砍死她后回营地。这女伯爵可不简单，刚开始的一个火墙就够你受的了。杀她用野蛮人可能好打些。　　 </div><div class="line">　　任务奖励：无 </div><div class="line">　　任务难度：☆☆☆☆☆</div><div class="line">　　任务五：Tools Of The Trade 交易的工具　　 </div><div class="line">　　找铁匠恰西（Charsi），他叫你去修道院（Horadric Malus)找他打造魔法工具的锤子，从黑色荒地到修道院，进去之前最好升至10级，德鲁伊（Druid）9级足以！（我去闯时也就是9级的德鲁伊）。在里面（不要浠里糊涂的打到安达丽尔的巢穴去了啊！那个锤子在第一层！不要下楼梯！死了别怪我！）找到了一个铁匠，那家伙能秒1级德鲁伊！（废话!），他身后有一个锤子，这就是恰西的铁锤了。先放一传送门，冲进去，拿了铁锤跑！进了传送门就安全了。把锤子给恰西，他就可以打造魔法工具了。把无魔法的装背放进去，打勾就可。　 </div><div class="line">　　任务奖励：恰西可以打造魔法物品。 </div><div class="line">　　任务难度：☆☆☆☆☆ </div><div class="line"></div><div class="line">　　任务六：Sisters To The Slaughter 屠杀的修女 </div><div class="line">　　回村庄，找凯恩，他叫你去杀安达丽尔。回修道院，找到进古墓的楼梯，这个古墓共有五层。杀到最后一层，见到安达丽尔，杀死她吧！（此时最好升至16级，带10瓶解毒药水，15瓶补血药水。）安达丽尔果然很厉害，可惜啊！被我砍了三五两下就倒在了血泊之中……完成后找瓦瑞夫，选择‘向东走‘，至鲁·高因。　　 </div><div class="line">　　任务奖励：第一幕结束。 </div><div class="line">　　任务难度：☆☆☆☆☆☆☆</div></pre></td></tr></table></figure><p></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">第二幕：鲁·高因 </div><div class="line"></div><div class="line">　　任务一：Radamenbt‘s Lair罗德门特的巢穴　　 </div><div class="line">　　进入任务后，找妇人阿特玛（Atma）对话。她在旅店附近晃悠。得知附近下水道的怪物经常骚扰百姓。其首领Radamenbt（罗德门特）更是非常残忍，找到Radamenbt（罗德门特），杀死他回去交差。这个Radamenbt可不好惹，不过比魔头Andariel差远了。至少是吃不住我的‘熔岩裂缝‘的。他身上死后会掉出许多好东东，拿走卷轴和那本书。（有个BUG：拿了技能书后，存档，退出。再来时，罗德门特又‘活‘了。因此……呵呵，技能无限！！！！！）　　 </div><div class="line">　　任务奖励：技能书。 </div><div class="line">　　任务难度：☆☆☆☆☆ </div><div class="line"></div><div class="line">　　任务二：The Horadric Staff 赫拉迪克的法杖 </div><div class="line">　　找凯恩大师，给他卷轴。他会告诉你另一个任务。你要去死亡之殿（Halls of Dead)得到赫拉迪克的石盒(Cube)。然后去远方的绿洲（Far Oasis)取得杖身。然后去蛇爪神殿（Claw Viper Temp)，得到法杖上半部。敌人并不难杀。可是都是些放毒的，数量也不少。可是，最终还是很简单的。找齐了以后，用石盒组合成赫拉迪克的法杖。先放着。等到接第六个任务时再用。　　 </div><div class="line">　　任务奖励：赫拉克勒斯的石盒 </div><div class="line">　　任务难度：☆☆☆☆☆ </div><div class="line"></div><div class="line">　　任务三：Tainted Sun坠落的太阳　　 </div><div class="line">　　是在远方绿洲生成的。要你去找卓格南谈话。第二个任务完成后，这个也就完成了。　　 </div><div class="line">　　任务奖励：无 </div><div class="line">　　任务难度：☆ </div><div class="line"></div><div class="line">　　任务四和五：　　 </div><div class="line">　　这是一起完成的。首先，找杰海因国王陛下（Jerhyn）讲话，他叫你去他身后的楼梯，杀死里面的怪物并寻找传送门。砍了个痛快，杀到底，见到传送门，进去，那里是神秘的庇难所（Arcane Sanctuary），寻找赫伯特（Horbet）的日记。敌人难杀的要命，笔者在里面挂了3次才找到日记。注意还有个召唤师看守日记，杀死他并阅读日记，回城镇问Jerhyn，他告诉你正确墓室的符号。　　 </div><div class="line">　　任务奖励：无 </div><div class="line">　　任务难度：☆☆☆☆☆☆ </div><div class="line"></div><div class="line">　　任务六：The Seven Tombs 七个墓穴　　 </div><div class="line">　　拿出赫拉迪克的法杖，去刚才的神秘的庇难所，找到刚才杀召唤师的地方，进传送门，到术士的峡谷，找到正确的墓穴钻进去杀到底。有个圆形祭坛要好好找，把法杖插进去，打开了一堵墙，钻进去见到大魔头。呵呵呵呵，很恐怖的，说出来吓死人的——大毛毛虫泰瑞尔！这个家伙真讨厌，速度又快又难打。杀死它后，进大堂看见一个快死的人，与其对话，再上去见凯恩，再见Jerhyn，找船长Meshief（马席夫），去库拉斯特海港。　　 </div><div class="line">　　任务奖励：第二幕结束 </div><div class="line">　　任务难度：☆☆☆☆☆☆☆☆</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">第三幕：库拉斯特海港 </div><div class="line"></div><div class="line">　　任务一：The Golden Bird黄金鸟　　 </div><div class="line">　　来到库拉斯特海港（我咋看着都象美洲玛雅人的建筑和衣着），出去练练级，有一群小怪物杀死后得到玉制小雕像，把他交给凯恩那个跟屁虫，然后找马席夫，得到黄金鸟，再找凯恩，去找Alkor，得到一个可以加20点最大生命的药水。 </div><div class="line">　　任务奖励：加20点最大生命的药水 </div><div class="line">　　任务难度：☆ </div><div class="line"></div><div class="line">　　任务二：Blade Of The Old Religion 古代宗教之刃　　 </div><div class="line">　　铁匠Hratli叫你去帮他取回Gidbinn（吉德宝）剑。在扒皮丛林（Flayer Jungle）里可以得到。但要注意看守Gidbinn的怪物，杀掉后从篝火处得到。 </div><div class="line">　　任务奖励：可从Asheara处购得佣兵 </div><div class="line">　　任务难度：☆☆ </div><div class="line"></div><div class="line">　　任务三：Khalim‘s Will克林姆的意志 和 任务四：The Blackened Temple 转为黑暗的神殿　　 </div><div class="line">　　凯恩那个你走那跟那的跟屁虫对你说，你的此行目的是杀了Mephisto，而Mephisto的哥哥大菠萝（Diablo）却用封印球(Orb）保护着他。因此要用连枷Khalim‘s will（没听说过这么怪的武器的名字的）摧毁它。因此要去蜘蛛之穴（Spider Cavern)找眼睛，去扒皮地道(Flayer dungeon)找脑子，在库拉斯特商场的下水道（Kurast bazaar)找心脏，再去崔凡克找连枷并彻底摧毁最高评议会，得到连枷，然后找凯恩，用上一幕的石盒组成连枷‘克林姆的意志‘, 用它打碎在崔凡克的封印球。　　 </div><div class="line">　　任务奖励：无 </div><div class="line">　　任务难度：☆☆☆☆☆</div><div class="line">　　任务五：Lam Esen‘s Tome蓝·依森的古书　　 </div><div class="line">　　Alkor艾柯叫你去找蓝·依森的古书，要在分布于库拉斯特商场的六个墓穴找。　　 </div><div class="line">　　任务奖励：5点属性点 </div><div class="line">　　任务难度：☆☆☆☆ </div><div class="line"></div><div class="line">　　任务六:The Guardian 祈祷者　　 </div><div class="line">　　打破封印球后，杀到憎恨的囚牢第三层杀死Mephisto，这个黑暗天使血又近似无限，魔法又狠，不好杀，可以用打上一幕Boss的方法杀。注意要拿他的灵魂石(Soul Stone)喔！　 </div><div class="line">　　任务奖励：第三幕结束。 </div><div class="line">　　任务难度：☆☆☆☆☆☆☆☆</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">第四幕：群魔堡垒 </div><div class="line"></div><div class="line">　　任务一：The Fallen Angle 坠落的天使　　 </div><div class="line">　　到了第四幕后，找天使Tyreal（泰瑞尔），他告诉你，你要去绝望平原(Plains of Despair）找Izual，他是个坠落天使，是个好人，可惜透露了天堂的秘密，所以要你当郐子手去杀了他。在绝望平原杀死Izual，与他的灵魂对话，Tyteal被他骗了，哼哼，死到临头还嘴硬。 </div><div class="line">　　任务奖励：Tyreal可以复活你的佣兵 </div><div class="line">　　任务难度：☆☆☆☆☆☆☆ </div><div class="line"></div><div class="line">　　任务二：Hell‘s Forge地狱炼炉　　 </div><div class="line">　　这一任务是凯恩给的，那个跟屁虫，又屁颠屁颠的跟过来了。Mephisto阴魂不散，弄的凯恩晚上睡不着觉老做噩梦,谁让你跟来的？(^O^开个玩笑而已），所以要用地狱炼炉把他的灵魂石给毁了。杀到神罚之城（找的我N苦！），下到火焰之河，这里的敌人可不简单，又砍人又施法，有的还会放毒，甚至它们还会‘群殴‘！！！没有30级是绝对撑不下来的。到地狱铁钻前，有个大怪物要杀，是什么东西的制造者，想不起来了，反正这家伙在地狱铁钻附近。砍吧，他身上有一个地狱铁锤(HellforgeHammer），把灵魂石放在地狱炼炉前敲，啪啪啪！Mephisto真正的死喽！！！哈哈！！！　　 </div><div class="line">　　任务奖励：无 </div><div class="line">　　任务难度：☆☆☆☆☆☆☆ </div><div class="line"></div><div class="line">　　任务三：Terror‘s End恐怖的结局　　 </div><div class="line">　　在火焰之河尽头，是混沌避难所。里面‘住‘着大魔头Diablo，有五个封引（Seal），要全部启动才能见到Diablo（注意，每启动一个传送点就有一个大头目带着一帮很强的小喽喽出现，随便打几下你就挂）。是一条红龙，放火的，几下就能把你干掉，但是，一旦不行就别硬拼，三十六计，走为上策，咱惹不起，躲的起，好好练级，总有一天，Diablo会倒在你的剑下。　　 </div><div class="line">　　任务奖励：第四幕结束 </div><div class="line">　　任务难度：☆☆☆☆☆☆☆☆☆☆</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">第五幕：哈洛加斯 </div><div class="line"></div><div class="line">　　任务一:Sige On Harrogath 哈洛加斯围城战　　 </div><div class="line">　　与Larzuk对话触发此任务。拉苏克（Larzuk)让你杀死Shenk The Overseer，这家伙龟缩在血腥丘陵（Bloody Foothills）尽头处。Shenk The Overseer不难杀，只要管好附近的小喽喽就行了。　　 </div><div class="line">　　任务奖励：Larzuk能够为你的装备打孔。 </div><div class="line">　　任务难度：☆☆☆☆☆☆ </div><div class="line"></div><div class="line">　　任务二：Rescue On Mount Arreat高原拯救战 </div><div class="line">　　夸尔卡克（Qual-Kehk）叫你拯救十五名被困于冰冻高原（Frigid Highlands）的野蛮人战士（Barbarian），在Frigid Highlands找到牢笼，救出Barbarian，回去找Qual-Kehk，得到奖励。此行敌人很强，没有把握最好多多练级。另外，Qual-Kehk给的奖励很多哦！　　 </div><div class="line">　　任务奖励：四个符咒，可向Qual-Kehk雇佣野蛮人战士（Barbarian） </div><div class="line">　　任务难度：☆☆☆☆☆☆ </div><div class="line"></div><div class="line">　　任务四：Prison Of Ice冰之囚　　 </div><div class="line">　　与Malah对话得到。Malah说城里的Anya失踪，要把她找回来。在冰河（Frozen River）找到Anya，没想到她被冰冻了，回城找Malah要药水，然后回Frozen River找Anya，用药水救出，Malah、Anya会给你赏。　　 </div><div class="line">　　任务奖励：一件黄装（以角色而定）、卷轴 </div><div class="line">　　任务难度：☆☆☆☆☆ </div><div class="line"></div><div class="line">　　任务五：Betrayal Of Harrogath哈洛加斯的无耻背叛者　　 </div><div class="line">　　Anya说有一个名叫尼拉塞克（Nihlathak）的村庄长老，现在背叛了，她要你去结束他那无耻的生命。进入她开的传送门，找到Nihlathak，他召唤了一大群怪物冲了过来。很可惜，他的召唤术很强是没错，但是比我略逊一筹，当他的手下被我的毁天灭地、灰熊消灭的差不多时，这家伙开始爆尸（死灵法师？），哼，几下毁天灭地把他解决了。但是他的爆尸的确很强，威力奇大（笔者496的生命值、69级也都差点挂），千万小心！！然后找Anya领赏。　　 </div><div class="line">　　任务奖励：Anya给你的武器镶上你的名字 </div><div class="line">　　任务难度：☆☆☆☆☆☆☆ </div><div class="line"></div><div class="line">　　任务六：Rite Of Passage通道祭祀　　 </div><div class="line">　　Qual-Kehk说你虽然杀死了Nihlathak，但是村子的圣物Relic Of Ancients却不见了踪影，巴尔（Baal）很可能得到了，必须到世界之石要塞（Worldstone Keep）阻止Baal的阴谋。来到Arreat Summit山顶，阅读石刻碑（Altar Of The Heavens），旁边的三个石像会变成敌人攻击你，很厉害，千万小心。干掉后，三个石像就变成金的了。Baal！再也没有能够阻止我前进并杀死你的东西了！　　 </div><div class="line">　　任务奖励：无 </div><div class="line">　　任务难度：☆☆☆☆☆☆☆☆☆ </div><div class="line"></div><div class="line">　　任务七：Eve Of Destruction毁灭前夕　　 </div><div class="line">　　恭喜恭喜！如果你没用修改、秘籍的话，闯到这里，可以算是个游戏中级玩家了！Baal缩在WorldstoneKeep尽头，他召唤的小喽喽就够你受的了，回头还要跟他单挑......呵呵呵呵，Baal可不是好惹的！！！如果你杀死了Baal，Trael会出现，他说Worldstone遭到污染，一定要毁灭，什么意思？？我不想也不能管那么多了，我只想休息一会。期盼《暗黑III》上市，也就是我的旅途再次被点明的时候....... </div><div class="line">　　任务奖励：游戏过关</div></pre></td></tr></table></figure>
+        <h1 id="Mac-OS-X-安装Maven"><a href="#Mac-OS-X-安装Maven" class="headerlink" title="Mac OS X 安装Maven:"></a>Mac OS X 安装Maven:</h1><ul>
+<li>下载 <a href="https://maven.apache.org/download.cgi" target="_blank" rel="external">Maven</a>, 并解压到某个目录。例如/Users/Runtime/apache-maven-3.5.0</li>
+</ul>
+<h3 id="System-Requirements"><a href="#System-Requirements" class="headerlink" title="System Requirements"></a>System Requirements</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Java Development Kit (JDK)	Maven 3.3+ require JDK 1.7 or above to execute - they still allows you to build against 1.3 and other JDK versions by Using Toolchains</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Memory	No minimum requirement</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Disk	Approximately 10MB is required for the Maven installation itself. In addition to that, additional disk space will be used for your local Maven repository. The size of your local repository will vary depending on usage but expect at least 500MB.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Operating System	No minimum requirement. Start up scripts are included as shell scripts and Windows batch files.</div></pre></td></tr></table></figure>
+<ul>
+<li>打开<code>Terminal</code>,输入以下命令，设置<code>Maven classpath</code></li>
+</ul>
+<p><code>$ vi ~/.bash_profile</code></p>
+<ul>
+<li>添加下列两行代码，之后保存并退出<code>Vi</code>：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export M2_HOME=/Users/Runtime/apache-maven-3.5.0 </div><div class="line">export PATH=$PATH:$M2_HOME/bin</div></pre></td></tr></table></figure>
+<ul>
+<li>输入命令以使<code>bash_profile</code>生效</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ source ~/.bash_profile</div></pre></td></tr></table></figure>
+<ul>
+<li>输入<code>mvn -v</code>查看Maven是否安装成功</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Maven</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/MacOS//" class="article-tag-list-link color1">MacOS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/21/2017-08-21-mac-maven/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2017-08-22-nginx" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/22/2017-08-22-nginx/">nginx 服务器重启、关闭命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/22/2017-08-22-nginx/" class="archive-article-date">
+  	<time datetime="2017-05-22T06:24:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="nginx-服务器重启、关闭命令"><a href="#nginx-服务器重启、关闭命令" class="headerlink" title="nginx 服务器重启、关闭命令"></a>nginx 服务器重启、关闭命令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nginx -s reload  ：修改配置后重新加载生效</div><div class="line">nginx -s reopen  ：重新打开日志文件</div><div class="line">nginx -t -c /path/to/nginx.conf 测试nginx配置文件是否正确</div></pre></td></tr></table></figure>
+<p>关闭nginx：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nginx -s stop  :快速停止nginx</div><div class="line">         quit  ：完整有序的停止nginx</div></pre></td></tr></table></figure>
+<p>其他的停止nginx 方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep nginx</div><div class="line"></div><div class="line">kill -QUIT 主进程号   ：从容停止Nginx</div><div class="line">kill -TERM 主进程号   ：快速停止Nginx</div><div class="line">pkill -9 nginx       ：强制停止Nginx</div></pre></td></tr></table></figure>
+<p>启动nginx:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -c /path/to/nginx.conf</div></pre></td></tr></table></figure>
+<p>平滑重启nginx：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kill -HUP 主进程号</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">常用命令</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Nginx//" class="article-tag-list-link color1">Nginx</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/22/2017-08-22-nginx/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2016-03-31-car" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/31/2016-03-31-car/">倒车技巧!</a>
+    </h1>
+  
+
+        
+        <a href="/2016/03/31/2016-03-31-car/" class="archive-article-date">
+  	<time datetime="2016-03-31T15:05:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 之前刚学车的时候，倒车总找不好方向，在网上看到了这组图片，受益匪浅故保存在电脑上，现在分享出来希望能给更多的人以帮助，十分感谢原作者。</p>
+<h2 id="第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。"><a href="#第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。" class="headerlink" title="第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。"></a>第一：绝大多数汽车都是前轮作为-转向论-，而后轮不能改变方向（这是废话呵呵）。</h2><p><img src="/resources/20160331/car1.gif" alt="car1"></p>
 <hr>
-<p><em>第二部分：任务攻略通俗版</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">　　第一幕：罗格营地</div><div class="line">　　第一个任务：Den of Evil邪恶的巢穴</div><div class="line">　　你的第一个任务是由村庄里的女巫师Akara给的，她说她是这里的首领，为 了解除诅咒，所以要你这个勇者去一趟小恶鬼的巢穴，这个巢穴就在出城之后的 不远处（其实也够远的了），而且这一代的地洞和前一代的长相不同，千万不要 错过了，进入洞穴后，才发现这个洞穴只有一层，敌人也不难对付，不过最好还 是先在地面上练一练，反正多点经验值和等级是不会错的，在这个巢穴里，你要 杀光所有的怪物，还要对付恶鬼的首领：黑恶鬼（Dark Labyrinth），这个恶鬼 会和一大群的敌人一起向你涌过来，第一次交手时，你会不知道哪个才是Dark Labyrinth！ 战斗时记住，先别攻击他，先把附近的恶鬼法师解决了，才宰了Dark Labyrinth， 不然敌人会一直复活，杀都杀不完，最后完成任务后向女巫回报。她会送你一项技能。</div><div class="line">　　第二个任务：Sisters Burial Grounds（姐妹情深）</div><div class="line">　　才解决了女巫Akara的任务之后，马上就可以从这里的武士队长Kashya处得 到下一个任务；她说Akara也许是这里的首领没错，但是实际在这里发号施令的 是她，所以要得到她的信任才行去，她说她有个姐妹出任务时，在坟场失踪了， 不用多说，当然是找她回来，这次你要经过冷高原（cold plains）才能到坟场 ，注意，这里是要「穿过cold plains」，不是在cold plains，你进入坟场之后， 会有一大群怪物杀过来，而Kshya的姐妹已经变成了怪物的首领－血乌鸦（Blood Raven），这是场恶战，不但一直有敌人涌上来，而那个Blood Raven还会一直 站在远处对你射火箭，而且她跑得又快，杀她有点吃力，所以最好是边打边跑， 逃出她的射程之后先对付小敌人，等到差不多将小的敌人清除得差不多之后，再 追着她打，杀了她之后，向Kashya回报，她会给你一个佣兵，而且从此之后，你 可以随时向她雇一些佣兵，这些佣兵有时很有用的，至少在打不过的时候，她们 可以变成「肉盾牌」。</div><div class="line">　　第三个任务：The Search For Cain（解救凯恩大师）</div><div class="line">　　这一次马上又会在女巫Akara那里接到任务，你要像解救雷思大兵一样去把凯恩Cain大师 救回来，在这里一定要听清楚那个Akara说的话，她说要穿过地下通道（Underground Passage） 去黑木场（dark wood），找一颗inifuss树和一个卷轴，不过你出门之后，你会看到一个地洞， 那可不是Akara所说的地下通道，地下通道是Underground Passage，那个地洞只有两层，可以 在里面练练功，找点小宝物，真正的Underground Passage在坚石农场（Stony Field）里，进 了Underground Passage之后，这里又有一点要注意，在Underground Passage的第一层有两个 出口，一个是往下的，那是死路，只能纯练功，另一个往上的出口，才是到黑木场的路。</div><div class="line">　　出了 地道之后，你下上可以找到一颗大树，那就是Tree of Inifuss，往树上一点，就可以得到一 个卷轴了，然后拿着那个卷轴回到村落，和Akara交谈，她会把那个卷轴翻译出来，这时候再 回去坚石农场，你会找到一个五根石柱组成的石阵，打开那个刚才翻译好的卷轴，你会看到 上面画着触摸石柱的顺序，依照顺序摸那五根石柱，这时会在石阵的中心出现一个传送门， 由这个传送门可以到达崔斯特瑞姆（Tristram），这个地方有一些比较强的小恶鬼和法师， 小心对付他们，你一边杀，会一边看到一个吊着的笼子里关着一个人，那就是Cain了， 你只要杀到他附近，就可以放他出来了，他 会先回到村落里，你如果在这里杀得差不多了，也可以回去村子了，完成这个任 务之后，以传你要监定物品，就可以去找Cain，而且以后找Akara买东西时，还 可以打九折哦！</div><div class="line">　　第四个任务：The Forgotten Tower（遗忘的高塔）</div><div class="line">　　这个任务是在执行前一个任务时在路上得到的，你会看到一个书架，上面放 了一本书，打开书之后，那本书就会交给你这个任务了，你在进行这个任务之前 ，可以先去村落里找Charsi、Akara或Kashya交谈，总之，是这个塔里住了一个 女伯爵，她要用一百个处女的血来维持她的生命，黑木场可以通到黑沼泽 （Black Marsh），附近也有一个洞穴可以练功，练得差不多之后，就可以进入 塔里了，这个塔里的怪物没什么了不起的，一共只有六层，而且每一层都很小， 很快就打完了，打到第六层时，就会碰上那个女伯爵了，她会先放一个火墙，冲 过去之后好好教训她，没多久就能收拾她，接着，她身后的一个宝箱，会像吃角 子老虎一样一直掉出大量的钱和宝物，捡了之后回到村庄，这个任务就完成了。</div><div class="line">　　第五个任务：Tools of the Trade（以物易物）</div><div class="line">　　这个任务是铁匠Charsi给的，她说她在逃到这里之前，掉了一个铁　，所以 要你去找回来，找回来之后，她就可以打造魔法武器了，她的铁　掉在Horadric Malus的修道院里（Monastery Barracks），你得由黑沼泽过去，一直走到 Horadric Malus，你会看到一座城堡，这里就是放铁　的地方了，这里的怪物很 多，也很难打，若没有等级十四以上，是很难过去的，一直往里面杀去，你会碰 到一个大家伙，他是这里的铁匠（Smith），也是这一个任务的首领，那家伙壮 得要命，不过杀了他之后，你就可以在旁边的架子上得到那把铁　了，拿了铁　 回到村庄，交给铁匠Charsi，她会帮你将一把武器和宝石装配成魔法物品，那把 武器一定是要SOCKED的才行哦！</div><div class="line">　　第六个任务：Sisters to the Slaughter（蛇蝎美人）</div><div class="line">　　这个任务是由凯恩大师（Deckard Cain）给的，你要回到修道院，去找到其 中的地下墓穴，再进去地下墓穴找到Andariel的巢穴，当然，也要杀了她。巢穴 的入口，就在刚才杀铁匠的另一边，这个地洞有五层，也是目前最难打的一关， 前三层还算好的，第四层开始就陷入苦战，建议你一感到吃力，就回去上面练练 功，因为第五层的难度比第四层高得多。你到了第五层之后，马上会碰到那个女 魔头，那个女魔头很狠，生命又长又会放毒，所以你在进入第五层之前，一定要 买一点解毒的药水，再来，补血的东西也不能少，幸好，这一关的出口很近，一 打不过就马上逃向出口，回到上层，这和第一代不一样，敌人不会守在出口等你 下来送死，所以先回到上层补给充分之后，再回到第五层慢慢磨，也是不错的办 法，如果你有幸杀了那个女魔头，回到村庄之后，就可以去东方的世界了。</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">第二幕：东边</div><div class="line">　　东边是一个全新的世界，没有人相信你，少不得又要来取得信任那一套。</div><div class="line">　　第一个任务：Radaments Lair（下水道之战）</div><div class="line">　　这是一个妇人Atma给的，她就在酒店的附近，她说她的儿子和丈夫都被下 水道的怪物杀了，而且那怪物杀了很多的人，如果你杀了下水道的怪物，她就会 报答你，下水道的入口就在这座城大门口前的一个Trap Doorfa 下面，你只要打 开地上的那个门，下去就可以执行这个任务了，这个下水道的敌人擅用火和毒， 下去前最好先准备一下，这个地下道的第五层最深处，就是魔头所在的位置， 杀了它之后一定要记得检查一下，它身上会掉出一本可以学技能的书，和一个 叫做Horadric的卷轴，什么都可以不拿，但是这两个东西一定要拿，拿了这两样 东西之后，回到城中，向Atma回报，她说她会将你所为她做的事情转告给其它人 ，这样大家就能比较信任你了，然后你拿着那Horadric卷轴去找凯恩大师，他会 给你下一个任务。</div><div class="line">　　第二个任务:the Horadric Staff </div><div class="line">　　凯恩说放尸体的墓穴被封印了，要用Horadric法杖（Horadric Staff）才能 开启，所以你得先去乾涸山丘（Dry Hills）的死亡之殿（Halls of Dead ）去 取得可以组合法杖上的石盒（Cube），再去远方绿洲（Far Oasis）的Maggot巢 穴（Maggot Lair）里找到法杖的杖身，再去蛇爪庙（Claw Viper Temp）找嵌入 宝石的法杖上半部（Headpiece）；这次的任务可真是够烦的了，尤其野外又很 大，得爬上山才看得到死亡之殿和远方绿洲的入口，不过这两个地下迷宫都没什 么难度，可以轻松过关，尤其是第一个死亡之殿，你得到了那个石盒之后，先回 去找凯恩大师，他会告诉你，你以后可以利用那个宝盒，把宝石装备在你想要组 合的武器上，变成魔法物品，而且那个宝盒还可以当箱子用，这样就不怕储物箱 里的东西太满了！而在去远方绿洲的路上，任务表又会亮起，要你回去城里找 Drognan谈谈，这时第三个任务也启动了。不过你还是可以先去远方绿洲，有空 的时候再回到城里就可以了；远方绿洲里的怪物很容易对付的，不过会施毒， 所以最好准备一下再进去。拿到杖身之后，还是先回到城里找凯恩大师。</div><div class="line">　　最后要去蛇爪庙了，这个地方很远，你要一直穿过消失的城市（Lost City） 一直到蛇谷才能找到入口（Valley of Snake）这里的怪物很难对付了，一定要 小心，最好是步步为营，杀到第二层之后，你会看到一个祭坛，打烂祭坛之后， 你就能得到法杖的上半部，最后回到城中将法杖组合就可以了，组合完之后和凯 恩大师交谈，这个任务到目前为止就算完成了，因为这会和第六个任务一起完成 的。</div><div class="line">　　第三个任务：Tainted Sun（暗日）</div><div class="line">　　这个任务是在执行第二个任务时启动的，它要你回城里问问那个奇怪黑暗 的原由，再和村中的人谈Lut Gholein的事情，第到第二个任务完成后，这个任 务也算完成了。</div><div class="line">　　第四个任务及第五个任务：</div><div class="line">　　接下来的任务都是自动生成的，首先，你要去皇宫里和Jerhyn国王谈话， 他会告诉你，他之前犯了一个错误，误用奸臣，召唤了一大群怪物，使得自己 的皇宫沦陷了，直到他雇用了现在的武士们，才保住了现在地面上的城市，你 现在得去神秘天堂（Arcane Sanctuary），和他说完话后，由他后方的走道下 去，一直杀到底，会看到一个传送门，通过那个传送门，就可以到那个神殿了， 现在的任务是要去找到Horzon的日记。</div><div class="line">　　这个地方真是有够难打的，敌人有时还会临空而来，要不然就是施放火墙 术，如果跑得不够快，一定会挂在那里好几次，所以最好身上带满了补血的药 水，然后将所有的钱放在储物箱里，以免后悔莫及，说实在的，这个地方的东 西还不算很好，所以花这么多精神杀敌也不一定划算，如果真的不愿冒险，那 就不要每个地方都闯，反正这里一共分成四个部份，往由传送门组成的部份走 ，那比较省力，而且这一关的重点也在这里。</div><div class="line">　　如果你杀到了由传送门组合成的部份的最后部份，那么你会看到一个像是 魔法阵的地方，召唤师就在那里等着你，杀了他之后，你会发现那里还有一本 书，就是日记了，打开日记，你才知道原来解开封印的印记一共有七个，现在 只有六个，所以你还得回到村庄去问问别人！这个时候，魔法阵的中央还会出 现一个传送门，你可以直接杀进去，但是也可以先回城里，先了解发生了什么事。</div><div class="line">　　回到城里之后，先去找国王，他会告诉你一共有七个印记，分别藏在七个 不同的墓穴里，而少了的那个印记藏在哪一个墓穴他就不知道了！这意味着你 很有可能闯第一个墓穴就找到了印记，也有可能是你闯到最后一个墓穴才找到！</div><div class="line">　　第六个任务：The Seven Tombs（第七印记）</div><div class="line">　　现在打开你的储物箱，拿出你的法杖，回到刚才在神殿最底处的那个传送 门，进去传送门，你会来到一个沙漠，那个沙漠的确有好几个墓穴，每个墓穴 的敌人风格都不同，有的很简单，有的确很要命，如果你闯到了一个圆形的祭 坛前，那你才算大功告成，把法杖插进祭坛中间，旁边被封印的门就会打开， 你一进去就要面对这一关的大魔王了！</div><div class="line">　　这个家伙的速度很快，而且生命很强，建议你使用冷冻系的武器或法术， 要不然他的速度太快了，死上十几次都是可能的，除此之外，你最好还要装备 上防御冷冻系法术的防具，因为他不但速度快，而且还会冷冻你减慢你的速度！</div><div class="line">　　如果你杀了他，你就能进入更深处的大堂了，你会在大堂看到只剩最后一 口气的Tyrael，他说Diablo和他的兄弟Baal已经去了东边，要你快一点去毁了 他们！</div><div class="line">　　现在马上回到城中，和国王交谈，他除了感谢你之外，还会告诉这个城码 头的船长Meshief你有出海的权力，所以你现在马上去码头，准备向东岸航去吧！</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">第三幕：东岸部份</div><div class="line">　　这个地方的任务不一定按顺序生成，但是基本上，这里还是按照任务的图 形顺序列出。</div><div class="line">　　第一个任务：The Golden Bird（金色雕像）</div><div class="line">　　这个任务不是由人委托生成的，首先，先出城去逛逛，你会碰上一群小怪 物，杀了他们之后，可以从他们的身上得到一个玉制的小雕像（Jade Figurine）， 得到这个雕像时，你的任务手册会亮起，这时候，你先回到城中，因为这个任 务不用再出城了，先把这个雕像拿给凯恩大师，他也和你一起过来东岸了，凯 恩大师会告诉你，那个船长Meshif正在搜集这种雕像，于是你再回到码头前， 再把雕像拿给船长看，船长兴喜若狂，会给你一个黄金鸟的雕像（Golden Bird）， 用来交换你手上的雕像，拿了雕像之后，再回去找凯恩大师，他会告诉你，城 里有位Alkor正在找这个雕像，于是你再去找Alkor，他看到你的雕像之后，会 拿一个生命药水（Potion of Life）来换雕像，这个药水可以增加二十点生命 值，这个任务也就算完成了。</div><div class="line">　　第二个任务：Blade of the Old Religion（信念之剑）</div><div class="line">　　这是个任务是铁匠Hratli给的，他说他曾经有一把叫做 Gidbinn 的剑， 有了这把剑，怪物都不敢进村庄，所以要你把它找回来，以维持这个地方的 安全，找剑的地方在Flayer Jungle，你在杀了一个怪物之后，会从它的身上 得到这把剑，拿了这把剑之后，你再回到村庄找佣兵的首领Asheara，他会给你 一个佣兵使唤，而且以后也可以从这里雇用佣兵了，这里的佣兵很强，如果你 觉得练功很累，那就一定要好好利用这里的佣兵。</div><div class="line">　　第三个任务:Khalims Will（家里发的愿望）</div><div class="line">　　凯恩大师会告诉你，你来这里最主要的任务是杀了Diablo的兄弟Mephisto， 而却派了手下和结界宝珠（Orb）保护他，所以你要杀了保护结界宝珠的怪物， 然后再用家里发（Khalims）的权杖来毁了结界宝珠，但是要找到权杖，你必需 要搜集几种东西，第一要去Spider Cavern找他的眼睛，这里的怪物并不可怕， 只是要小心毒蜘蛛而已，找到之后回去找凯恩大师，再去Flay Jungle中的 flayer dungeon找脑子，这里的怪物就很麻烦了，不但数量多，而且速度快， 目标小，一定要小心，最后去Kurast Bazaar找心脏，这三种东西都找到之后， 暂时先别管任务的进度，等到再得到杖身之后，再用前一大关得到的石盒 （Cube），组合成权杖，然后将权杖装备在手中，就可以打破结界宝珠，直闯 最后一关了！</div><div class="line">　　第四个任务:Lam Esens Tome（怪物宝典）</div><div class="line">　　是Alkor给的，这是一本很奇特的书，书上记载了很多关于克制怪物的事 情，在Children of Zakarum到这个地方之后就不见了，现要你去Bazaar、 Upper Kurast和Causeway的六个神殿Temple去找到这本书，这几个神殿有一个 共同的特色，就是你一下地道就会被一群怪物围攻，所以你一定要有完全的准 备才行，如果你用术士，那么先在外面召唤一大群手下，然后再杀进去，这样 比较保险！得到这本书之后回去交给Alkor，这个任务也就算完成了。</div><div class="line">　　第五个任务：The Blackened Temple（黑神殿）</div><div class="line">　　你要毁了Mephisto，所以你要先去Travincal的Blackened Temple，在那 里，杀了一个怪物Ismal Vilehand后回去找凯恩，要记住，这里可以得到权杖 的杖身！</div><div class="line">　　第六个任务：The Guardian（黑牢之战）</div><div class="line">　　Diablo和他的兄弟Baal已经找到这里来了，他们想要救他们的兄弟 Mephisto，他现在被关在Guardian Tower中，所以你要比他们快一步！先去打 开结界，然后往下闯！这个Mephisto有够难打的，连它的手下都可以让你死于 非命，如果打不过就别硬拼，往上一层逃，逃出去之后准备好了再下去！</div><div class="line">　　如果你真的能杀了Mephisto，可以先回去城里听听其它的讯息，然后再回 到这里，记得，可以从他的身上得而一个灵魂石（Soul Stone），这个一定要 拿！接着用这里一个红色的传送门，往最后的决战前进！</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">第四幕：决战之地</div><div class="line">　　第一个任务：The Fallen Angle（堕落天使）</div><div class="line">　　一到了这个地方，马上去找Tyrael说话，他告诉你，你现在要面对的是 一个堕落天使，名叫Izual，你要去Plains of Despair找他，他原来可是个好人 ，只是不小心被抓了，透露出很多天堂的秘密，，所以你要去「结束」他的痛苦 ，这个地区的地形远比前面几关单纯得多，你一出门的第一个地区，就是执行任 务的地方，你会碰上已经变成恶魔的Izual，大战一场之后，就「解决」了他的痛 苦，不过他说的话却蛮耐人寻味的，Tyrael原来被他骗了，为什么天使总是笨得 可以…？</div><div class="line">　　第二个任务： Hells Forge（地狱铁砧）</div><div class="line">　　这个任务是由凯恩大师给的，你现在要把上一关拿到的Mephisto的灵魂石 放到River of Flam的一个地狱铁砧（Hellforge）上，然后将它打碎，你可以 先杀到River of Flam，找到那个铁砧，这时再回去找凯恩大师，他会告诉你还 需要一个铁　，所以，你还得再去地下城，往前杀过去，这个地方的结果不太一 定，因为有个大怪物的身上有把地狱铁　（Hellforge Hammer），要拿到那把铁　，才能毁了灵魂石，只要你拿了铁　，回到铁砧前敲三下，灵魂石一破，这个 任务就算完成了。</div><div class="line">　　第三个任务：Terrors End（恐怖终章）</div><div class="line">　　终于要面对最后的挑战了，这里的路线不是很复杂，但是敌人很难对付，特 别一提的是，这里一共有五个封印点（Seal），要全部启动了，Diablo才会出现 ，嘿嘿，这个难度真的算是上了天…，只要杀得了它，就可以看结局画面了！</div></pre></td></tr></table></figure>
+<h2 id="第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央"><a href="#第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央" class="headerlink" title="第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央"></a>第二：不难发现前轮轨迹的半径大于后轮轨迹的半径，因为汽车的旋转中心在后桥的中央</h2><p><img src="/resources/20160331/car2.gif" alt="car2"></p>
 <hr>
-<p><em>重要任务奖励</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">第三部分：重要任务奖励</div><div class="line">　　这里列举了一些比较受关注的任务奖励：</div><div class="line">　　第一场景: 任务5: 注入 </div><div class="line">　　注入会半一件基础的白色装备变为杰出装备. 基础物品的属性并不重要, 只有物品的类型会影响注入的结果. 同样, 所使用物品的质量 (超强, 普通, 损坏, 等等.) 不会对新产生的物品有影响. 不要把精力浪费在寻找超强的物品上, 那样没有任何作用. 当杰出物品生成后所有老的属性都将消失. 你的角色等级决定新的物品会有怎样的属性, 所以角色等级越高, 属性也相应的越好, 不过这只是概率上的问题, 并不一定. 查阅 魔法前缀 和 后缀 页面可以了解所有魔法属性的等级. 一旦使用后, 就不能后悔, 你不会每次都得到好的结果... </div><div class="line">　　最好将你的注入机会留给 扩展和精华 物品.</div><div class="line">　　第五场景: 任务1: 增加凹槽 </div><div class="line">　　你不能使用这个奖励来给已经有凹槽的物品增加凹槽.</div><div class="line">　　你只能给可以有凹槽的物品使用这个奖励, 例如标枪就无法使用这个奖励。</div><div class="line">　　普通物品获得最大凹槽数决定于物品等级 (这个等级由掉落它的怪物决定) 和物品的固有基础类型最大孔数. 所以你不会永远得到物品的 &quot;最大&quot; 凹槽奖励.</div><div class="line">　　魔法物品会获得 1-2 凹槽, 这个数量的决定是随机的.</div><div class="line">　　套装物品, 杰出物品, 暗金物品, 和合成物品都只能获得 1 凹槽(1 凹槽最多).</div><div class="line">　　你不能使用同件物品始终用于 &quot;增加凹槽&quot; 奖励.</div><div class="line">　　第五场景: 任务4: 个性化 </div><div class="line">　　个性化只指在物品上打上你的名字, 例如 &quot;bloodfaces 霜燃手套 &quot;. 尽量选择好的角色名和装备来使用这个奖励, 有时看到一些玩家使用非常普通的名字来给物品命名, 例如你的角色名是 &quot;iiiiiiiiiiiiiiiiiiiiii&quot;, 那么就最好不要浪费这个奖励.</div><div class="line">　　第五场景: 任务5: 远古之路 (经验奖励) </div><div class="line">　　这个任务是有等级要求的, 所以当你等级不够时无法完成这个任务, 等级要求 = 20 * 难度级别. 普通为 20 级, 噩梦为 40 级, 地狱为 60 级.</div></pre></td></tr></table></figure>
+<h2 id="第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”-这种方式带来的好处就是-使汽车进入非常狭小的空间"><a href="#第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”-这种方式带来的好处就是-使汽车进入非常狭小的空间" class="headerlink" title="第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”,这种方式带来的好处就是-使汽车进入非常狭小的空间"></a>第三：倒车时运动轨迹同样如此，感觉汽车在“甩头”,这种方式带来的好处就是-使汽车进入非常狭小的空间</h2><p><img src="/resources/20160331/car3.gif" alt="car3"></p>
 <hr>
-<p><em>以上…</em></p>
+<h2 id="第四：你不可能以前进的方式进入，因为后轮不能左右移动"><a href="#第四：你不可能以前进的方式进入，因为后轮不能左右移动" class="headerlink" title="第四：你不可能以前进的方式进入，因为后轮不能左右移动"></a>第四：你不可能以前进的方式进入，因为后轮不能左右移动</h2><p><img src="/resources/20160331/car4.gif" alt="car4"></p>
+<hr>
+<h2 id="第五：相反，你却可以后退进入狭小的空间。"><a href="#第五：相反，你却可以后退进入狭小的空间。" class="headerlink" title="第五：相反，你却可以后退进入狭小的空间。"></a>第五：相反，你却可以后退进入狭小的空间。</h2><p><img src="/resources/20160331/car5.gif" alt="car5"></p>
+<hr>
+<h2 id="第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。"><a href="#第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。" class="headerlink" title="第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。"></a>第六：倒车甚至可以曲折通过多重障碍。当然要根据当时的环境选择进还是倒。</h2><p><img src="/resources/20160331/car6.gif" alt="car6"></p>
+<hr>
+<h2 id="第七：倒车要点一，后轮的位置，如下图。"><a href="#第七：倒车要点一，后轮的位置，如下图。" class="headerlink" title="第七：倒车要点一，后轮的位置，如下图。"></a>第七：倒车要点一，后轮的位置，如下图。</h2><p><img src="/resources/20160331/car7.gif" alt="car7"></p>
+<hr>
+<h2 id="第八：倒车要点二，贴近障碍物，如下图"><a href="#第八：倒车要点二，贴近障碍物，如下图" class="headerlink" title="第八：倒车要点二，贴近障碍物，如下图"></a>第八：倒车要点二，贴近障碍物，如下图</h2><p><img src="/resources/20160331/car8.gif" alt="car8"></p>
+<hr>
+<h2 id="第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。"><a href="#第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。" class="headerlink" title="第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。"></a>第九：倒车要点三，外车前角，如下图，个人认为这点很重要，不要顾腚不顾头，这就是车右前方经常撞的原因。</h2><p><img src="/resources/20160331/car9.gif" alt="car9"></p>
+<hr>
+<h2 id="第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。"><a href="#第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。" class="headerlink" title="第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。"></a>第十：倒车要点四，注意后方障碍物。这个是最基本和最容易大意的地方。有个障碍物还好说，大不了撞一下，有个吭就……呵呵。</h2><p><img src="/resources/20160331/car10.gif" alt="car10"></p>
 
       
 
@@ -335,259 +584,26 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Car</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">生活小技巧</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/22/2016-03-22-Diablo/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2016-03-18-how-to-setup-jekyll-on-windows" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/18/2016-03-18-how-to-setup-jekyll-on-windows/">Jekyll on Windows!</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/18/2016-03-18-how-to-setup-jekyll-on-windows/" class="archive-article-date">
-  	<time datetime="2016-03-18T06:45:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Jekyll本地环境搭建"><a href="#Jekyll本地环境搭建" class="headerlink" title="Jekyll本地环境搭建"></a>Jekyll本地环境搭建</h1><p>Jekyll<a href="http://baike.baidu.com/link?url=YtmFI-QbclJtL50XZwNvy1jLOVV-irjUYnt5WpFoo5YHIgkICK_EuILhZfHqgPQz9Zdxig7q40SWdH6dweZzka" target="_blank" rel="external">百度百科</a></p>
-<p>必装：</p>
-<p>-Ruby &amp; Ruby Development Kit</p>
-<p>-Jekyll</p>
-<p>选装：</p>
-<p>-Python</p>
-<p>-Pygments</p>
-<p>1.下载Ruby和Ruby Development Kit安装包<a href="http://rubyinstaller.org/downloads/" target="_blank" rel="external">下载地址</a>。</p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup1.jpg" alt="RubySetup1"></p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup2.jpg" alt="RubySetup2"></p>
-<p>根据自己电脑情况选择32位还是64位</p>
-<p>2.安装刚才下载的<code>RubyInstalller-2.2.2-x64.exe</code>语言只能在英语和日语中选择</p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup3.jpg" alt="RubySetup3"></p>
-<p>3.记得要选中这个框，不然要手工增加Ruby的环境变量</p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup4.jpg" alt="RubySetup4"></p>
-<p>4.安装结束后，在CMD窗口输入<code>ruby -v</code>如果出现下图所示版本信息则表示安装成功</p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup5.jpg" alt="RubySetup5"></p>
-<p>默认安装的话会在C盘根目录生成文件夹，如<code>C:\Ruby22-x64</code></p>
-<p>5.解压<code>Ruby Development Kit</code>程序包</p>
-<p>6.CMD窗口切换至Ruby Development Kit解压的目录并执行</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby dk.rb init</div></pre></td></tr></table></figure>
-<p>7.打开<code>config.yml</code>内容大概如下</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># This configuration file contains the absolute path locations of all</span></div><div class="line"><span class="comment"># installed Rubies to be enhanced to work with the DevKit. This config</span></div><div class="line"><span class="comment"># file is generated by the 'ruby dk.rb init' step and may be modified</span></div><div class="line"><span class="comment"># before running the 'ruby dk.rb install' step. To include any installed</span></div><div class="line"><span class="comment"># Rubies that were not automagically discovered, simply add a line below</span></div><div class="line"><span class="comment"># the triple hyphens with the absolute path to the Ruby root directory.</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Example:</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># ---</span></div><div class="line"><span class="comment"># - C:/ruby19trunk</span></div><div class="line"><span class="comment"># - C:/ruby192dev</span></div><div class="line"><span class="comment">#</span></div><div class="line">---</div><div class="line">- <span class="symbol">C:</span>\Ruby22-x64</div></pre></td></tr></table></figure>
-<p>如果下面没有你Ruby的安装目录，就自己加上，别忘了前面有一个<code>-</code></p>
-<p>8.继续在CMD窗口执行<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby dk.rb install</div></pre></td></tr></table></figure></p>
-<p>9.安装成功后你就可以使用<code>gem</code>来安装<code>jekyll</code>了</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem install jekyll</div></pre></td></tr></table></figure>
-<p>10.成功安装jekyll后就可以尝试启动服务了</p>
-<p>10.1打开CMD窗口，切换到你打算创建项目的文件夹，执行</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jekyll new myblog</div></pre></td></tr></table></figure>
-<p>其中<code>myblog</code>是项目文件夹的名称</p>
-<p>10.2进入项目文件夹</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd myblog</div></pre></td></tr></table></figure>
-<p>10.3执行</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jekyll serve</div></pre></td></tr></table></figure>
-<p>现在，打开浏览器访问<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a></p>
-<p>11.选装部分请自行探索如果有必要以后我单独再写一下怎么操作。</p>
-<p>现在为什么不写呢，见下图</p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup6.jpg" alt="RubySetup6"></p>
-<p><a href="https://help.github.com/articles/page-build-failed-config-file-error/#fixing-highlighting-errors." target="_blank" rel="external">Fixing highlighting errors</a></p>
-<h1 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h1><p>-考虑到gem默认源在国外，可能速度比较慢甚至无法使用，准备使用淘宝提供的镜像地址，不过在添加的时候报错，看内容和SSL有关。<br></p>
-<p><img src="http://dysing.github.io/resources/20160318/RubySetup7.jpg" alt="RubySetup7"></p>
-<p>在网上找到一个<a href="http://blog.csdn.net/leorowe/article/details/41968349" target="_blank" rel="external">解决方法</a>不过试了一下无效……</p>
-<p>所以就使用了山东大学的镜像源，谁让人家是http呢</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem sources -a <span class="symbol">http:</span>/<span class="regexp">/ruby.sdutlinux.org/</span></div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/18/2016-03-18-how-to-setup-jekyll-on-windows/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2015-05-18-maven" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/18/2015-05-18-maven/">Maven 控制台输出内容乱码</a>
-    </h1>
-  
-
-        
-        <a href="/2015/05/18/2015-05-18-maven/" class="archive-article-date">
-  	<time datetime="2015-05-18T07:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-05-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Maven-执行Test时控制台输出中文乱码原因分析及解决方法"><a href="#Maven-执行Test时控制台输出中文乱码原因分析及解决方法" class="headerlink" title="Maven 执行Test时控制台输出中文乱码原因分析及解决方法"></a>Maven 执行Test时控制台输出中文乱码原因分析及解决方法</h1><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>今天下午使用Maven构建项目时，运行测试失败，查看出错原因时发现控制台输出如下图</p><br><img src="/resources/20150518/maven1.jpg" alt="Maven控制台乱码1"><br><br>## 经过<br><br><p>Google一下以后发现<a href="http://monsoongale.iteye.com/blog/1028926" target="_blank" rel="external">maven-surefire-plugin的乱码问题</a><br>目测跟我遇到的原因相同，这里直接把主要内容复制过来</p>
-
-<blockquote>
-<p>究其原因,是因为MAVEN的maven-surefire-plugin在新建JVM进程后,由于没有指定encoding,采用了OS的默认编码,导致读取UTF-8文件(测试类的sql脚本文件)时出现乱码,最终影响了TestNG的正确执行.</p>
-</blockquote>
-<p>具体原因如下：</p>
-
-<blockquote>
-<p>maven-surefire-plugin是运行mvn test时执行测试的插件,其有一个配置参数forkMode,默认为once,即表示每次运行test时,新建一个JVM进程运行所有test.这可能会导致乱码问题.首先将forkMode设置为never,即不新建.再运行mvn test,全部OK了.果然是这个问题!!<br>于是再找官方参数说明,发现了argLine参数,这个参数与forkMode一起使用,可以设置新建JVM时的JVM启动参数,于是设置<argline>-Dfile.encoding=UTF-8</argline>,明确指定一下JVM的file.encoding,并将forkMode从never改回once,还是每次新建一个JVM进程.再次运行mvn test,一起OK了,问题解决.</p>
-</blockquote>
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>修改后的pom.xml</p>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!-- 解决maven test命令时console出现中文乱码乱码 --&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">forkMode</span>&gt;</span>once<span class="tag">&lt;/<span class="name">forkMode</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">argLine</span>&gt;</span>-Dfile.encoding=UTF-8<span class="tag">&lt;/<span class="name">argLine</span>&gt;</span> </div><div class="line">			<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure>
-<p></p><p>重点是</p><br><code>&lt;argLine&gt;-Dfile.encoding=UTF-8&lt;/argLine&gt;</code><p></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/05/18/2015-05-18-maven/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2015-03-21-7zr" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/21/2015-03-21-7zr/">怎样用WinRAR解压7z.001，7z.002……格式的文件</a>
-    </h1>
-  
-
-        
-        <a href="/2015/03/21/2015-03-21-7zr/" class="archive-article-date">
-  	<time datetime="2015-03-21T06:08:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-03-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>有时下载的东西是<code>7z.001,7z.002....</code>格式的分卷压缩包，用7z软件可解压。<br>可是我们的电脑里一般都是安装的WinRAR解压软件，我也不想安装重复功能的软件，那该怎么办？<br><br>其实7z格式的文件WinRAR是可以解压的。7z.001这类文件是7z格式文件简单分割出的，我们只要用copy命令把它们合并成一个7z文件就可以用 WinRAR解压了。<br><br>运行命令行工具，进入7z.001文件的目录用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">copy  /B 文件名.7z.*  文件名.7z</div></pre></td></tr></table></figure></p>
-<p>就把多个001 002 003…..文件合并成了一个7z文件，再用WinRAR直接打开就行了。<br>例子：</p>
-<p><img src="/resources/20150321/7z.jpeg" alt="7z"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/03/21/2015-03-21-7zr/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/03/31/2016-03-31-car/">展开全文 >></a>
         </p>
       
 
@@ -619,7 +635,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -714,15 +730,87 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+                <a href="javascript:void(0)" class="js-tag color5">常用工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Jekyll</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Diablo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Google</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Tcp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">乱码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Car</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">生活小技巧</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Https</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">PlSql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Json</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">常用命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Soupui</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Wsdl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Nodejs</a>
               </li>
             
             <div class="clearfix"></div>
@@ -805,7 +893,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;直接用了别人的主题&lt;br&gt;文章也是笔记简单整理的&lt;br&gt;以后会努力写点自己的东西&lt;br&gt;&lt;br&gt;谢谢大家</div>
   	  	
     	</section>
     
