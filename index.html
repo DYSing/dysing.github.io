@@ -78,13 +78,15 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/DYSing" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
 					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
 					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:jiashuyao@163.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 		</nav>
@@ -121,13 +123,15 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/DYSing" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
 						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:jiashuyao@163.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -490,19 +494,19 @@
 
 
   
-    <article id="post-2017-08-22-java-json-exception" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2017-08-22-soapui-wsdl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/2017-08-22-java-json-exception/">异常处理Property &#39;name&#39; has no getter method</a>
+      <a class="article-title" href="/2017/08/22/2017-08-22-soapui-wsdl/">Soapui导入wsdl报错</a>
     </h1>
   
 
         
-        <a href="/2017/08/22/2017-08-22-java-json-exception/" class="archive-article-date">
+        <a href="/2017/08/22/2017-08-22-soapui-wsdl/" class="archive-article-date">
   	<time datetime="2017-08-22T06:24:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
 </a>
         
@@ -510,19 +514,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="异常处理Property-‘name’-has-no-getter-method"><a href="#异常处理Property-‘name’-has-no-getter-method" class="headerlink" title="异常处理Property ‘name’ has no getter method"></a>异常处理Property ‘name’ has no getter method</h1><p>在项目中进行json解析的时候遇到一个异常，网上找到一篇相关的文章，记录一下。</p>
-<hr>
-<p>在处理一个json的时候，发现一个很怪的异常。</p>
-<p><code>Java.lang.NoSuchMethodException: Property &#39;name&#39; has no getter method</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">import org.apache.commons.beanutils.PropertyUtils;  </div><div class="line"> import java.util.Map;  </div><div class="line"> publicclass Hello &#123;  </div><div class="line"> publicstaticvoid main(String[] args) throws Exception &#123;  </div><div class="line">    Map map = PropertyUtils.describe(new A(&quot;a&quot;));  </div><div class="line">  &#125;  </div><div class="line"> &#125;  </div><div class="line"> class A &#123;  </div><div class="line"> private String name;  </div><div class="line"> public A(String name) &#123;  </div><div class="line"> this.name = name;  </div><div class="line">  &#125;  </div><div class="line"> public A() &#123;  </div><div class="line">  &#125;  </div><div class="line"> public String getName() &#123;  </div><div class="line"> return name;  </div><div class="line">  &#125;  </div><div class="line"> publicvoid setName(String name) &#123;  </div><div class="line"> this.name = name;  </div><div class="line">  &#125;  </div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<p>发现这个异常来自<code>org.apache.commons.beanutils.PropertyUtils</code>类。<br>这个很怪的异常，可能来自3个原因：</p>
-<ol>
-<li><strong>类需要定义为public</strong></li>
-<li><strong>类可能需要定义一个包</strong></li>
-<li><strong>Bean类需要序列化</strong></li>
-</ol>
-<p>遇该问题对症下药即可。</p>
-<p><a href="http://blog.csdn.net/xiciliu/article/details/5788182" target="_blank" rel="external">原文链接</a></p>
+        <h1 id="Soupui导入wsdl报错"><a href="#Soupui导入wsdl报错" class="headerlink" title="Soupui导入wsdl报错"></a>Soupui导入wsdl报错</h1><p><img src="/resources/15033859071220.jpg" alt="A simpleContent extension must define a base type"></p>
+<p><strong>发现问题</strong>：测试Webservice接口，发现soapui导入报错，报错内容见上图；</p>
+<p><code>A simpleContent extension must define a base type</code></p>
+<p><strong>问题原因</strong>：wsdl中定义有问题，在simplecontent中必须有extension或者restriction内容，见<a href="http://www.voidcn.com/blog/caolaosanahnu/article/p-4657179.html" target="_blank" rel="external">http://www.voidcn.com/blog/caolaosanahnu/article/p-4657179.html</a>；全文搜索simplecontent，发现问题wsdl中有如下段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;complexTypename=&quot;Version&quot;&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">        &lt;extension/&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">&lt;/complexType&gt;</div></pre></td></tr></table></figure>
+<p><strong>解决方法</strong>：下载wsdl文件，将以上内容修改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;complexTypename=&quot;Version&quot;&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">        &lt;extensionbase=&quot;xsd:string&quot;/&gt;</div><div class="line">    &lt;/simpleContent&gt;</div><div class="line">&lt;/complexType&gt;</div></pre></td></tr></table></figure>
+<p>通过修改后的文件导入成功。</p>
 
       
 
@@ -536,15 +535,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Soupui</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Json</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Exception</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Wsdl</a>
         		</li>
       		
 		</ul>
@@ -556,7 +551,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/异常处理//" class="article-tag-list-link color5">异常处理</a>
+        			<a href="/categories/Soapui-wsdl//" class="article-tag-list-link color2">Soapui,wsdl</a>
         		</li>
       		
 		</ul>
@@ -565,7 +560,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/2017-08-22-java-json-exception/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/22/2017-08-22-soapui-wsdl/">展开全文 >></a>
         </p>
       
 
@@ -704,10 +699,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Diablo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Google</a>
               </li>
              
@@ -744,6 +735,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Diablo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Json</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">PlSql</a>
               </li>
              
@@ -756,23 +759,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">给自己挖坑</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Soupui</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Wsdl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Json</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">给自己挖坑</a>
               </li>
              
               <li class="article-tag-list-item">

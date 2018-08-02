@@ -126,6 +126,38 @@
   </entry>
   
   <entry>
+    <title>Soapui导入wsdl报错</title>
+    <link href="http://dysing.github.io/2017/08/22/2017-08-22-soapui-wsdl/"/>
+    <id>http://dysing.github.io/2017/08/22/2017-08-22-soapui-wsdl/</id>
+    <published>2017-08-22T06:24:30.000Z</published>
+    <updated>2018-07-27T01:41:02.274Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Soupui导入wsdl报错"><a href="#Soupui导入wsdl报错" class="headerlink" title="Soupui导入wsdl报错"></a>Soupui导入wsdl报错</h1><p><img src="/resources/15033859071220.jpg" alt="A simpleContent extension must define a base type"></p>
+<p><strong>发现问题</strong>：测试Webservice接口，发现soapui导入报错，报错内容见上图；</p>
+<p><code>A simpleContent extension must define a base type</code></p>
+<p><strong>问题原因</strong>：wsdl中定义有问题，在simplecontent中必须有extension或者restriction内容，见<a href="http://www.voidcn.com/blog/caolaosanahnu/article/p-4657179.html" target="_blank" rel="external">http://www.voidcn.com/blog/caolaosanahnu/article/p-4657179.html</a>；全文搜索simplecontent，发现问题wsdl中有如下段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;complexTypename=&quot;Version&quot;&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">        &lt;extension/&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">&lt;/complexType&gt;</div></pre></td></tr></table></figure>
+<p><strong>解决方法</strong>：下载wsdl文件，将以上内容修改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;complexTypename=&quot;Version&quot;&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">        &lt;extensionbase=&quot;xsd:string&quot;/&gt;</div><div class="line">    &lt;/simpleContent&gt;</div><div class="line">&lt;/complexType&gt;</div></pre></td></tr></table></figure>
+<p>通过修改后的文件导入成功。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Soapui导入wsdl报错method
+    
+    </summary>
+    
+      <category term="Soapui,wsdl" scheme="http://dysing.github.io/categories/Soapui-wsdl/"/>
+    
+    
+      <category term="Soupui" scheme="http://dysing.github.io/tags/Soupui/"/>
+    
+      <category term="Wsdl" scheme="http://dysing.github.io/tags/Wsdl/"/>
+    
+  </entry>
+  
+  <entry>
     <title>异常处理Property &#39;name&#39; has no getter method</title>
     <link href="http://dysing.github.io/2017/08/22/2017-08-22-java-json-exception/"/>
     <id>http://dysing.github.io/2017/08/22/2017-08-22-java-json-exception/</id>
@@ -161,38 +193,6 @@
       <category term="Json" scheme="http://dysing.github.io/tags/Json/"/>
     
       <category term="Exception" scheme="http://dysing.github.io/tags/Exception/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Soapui导入wsdl报错</title>
-    <link href="http://dysing.github.io/2017/08/22/2017-08-22-soapui-wsdl/"/>
-    <id>http://dysing.github.io/2017/08/22/2017-08-22-soapui-wsdl/</id>
-    <published>2017-08-22T06:24:30.000Z</published>
-    <updated>2018-07-27T01:41:02.274Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Soupui导入wsdl报错"><a href="#Soupui导入wsdl报错" class="headerlink" title="Soupui导入wsdl报错"></a>Soupui导入wsdl报错</h1><p><img src="/resources/15033859071220.jpg" alt="A simpleContent extension must define a base type"></p>
-<p><strong>发现问题</strong>：测试Webservice接口，发现soapui导入报错，报错内容见上图；</p>
-<p><code>A simpleContent extension must define a base type</code></p>
-<p><strong>问题原因</strong>：wsdl中定义有问题，在simplecontent中必须有extension或者restriction内容，见<a href="http://www.voidcn.com/blog/caolaosanahnu/article/p-4657179.html" target="_blank" rel="external">http://www.voidcn.com/blog/caolaosanahnu/article/p-4657179.html</a>；全文搜索simplecontent，发现问题wsdl中有如下段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;complexTypename=&quot;Version&quot;&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">        &lt;extension/&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">&lt;/complexType&gt;</div></pre></td></tr></table></figure>
-<p><strong>解决方法</strong>：下载wsdl文件，将以上内容修改为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;complexTypename=&quot;Version&quot;&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">        &lt;extensionbase=&quot;xsd:string&quot;/&gt;</div><div class="line">    &lt;/simpleContent&gt;</div><div class="line">&lt;/complexType&gt;</div></pre></td></tr></table></figure>
-<p>通过修改后的文件导入成功。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      Soapui导入wsdl报错method
-    
-    </summary>
-    
-      <category term="Soapui,wsdl" scheme="http://dysing.github.io/categories/Soapui-wsdl/"/>
-    
-    
-      <category term="Soupui" scheme="http://dysing.github.io/tags/Soupui/"/>
-    
-      <category term="Wsdl" scheme="http://dysing.github.io/tags/Wsdl/"/>
     
   </entry>
   
