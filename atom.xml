@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>Dysing</title>
   <subtitle>Power by Hexo</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dysing.github.io/"/>
-  <updated>2018-07-27T07:15:15.693Z</updated>
+  <updated>2018-08-02T11:51:46.991Z</updated>
   <id>http://dysing.github.io/</id>
   
   <author>
@@ -16,11 +16,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Mongodb</title>
+    <link href="http://dysing.github.io/2018/08/02/2018-08-02-mongodb/"/>
+    <id>http://dysing.github.io/2018/08/02/2018-08-02-mongodb/</id>
+    <published>2018-08-02T11:47:16.000Z</published>
+    <updated>2018-08-02T11:51:46.991Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Mongodb分片数据不均匀，全部进入主分片，手工同步报错，超时"><a href="#Mongodb分片数据不均匀，全部进入主分片，手工同步报错，超时" class="headerlink" title="Mongodb分片数据不均匀，全部进入主分片，手工同步报错，超时"></a>Mongodb分片数据不均匀，全部进入主分片，手工同步报错，超时</h1><p>现象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mongos&gt; sh.isBalancerRunning()</div><div class="line">true</div><div class="line">mongos&gt; sh.setBalancerState(false)</div><div class="line">&#123; &quot;ok&quot; : 1 &#125;</div><div class="line"></div><div class="line">mongos&gt; sh.moveChunk(&quot;mydb.log_20180801&quot;,&#123; &quot;LogType&quot; : 1, &quot;START_TIME&quot; : 1 &#125;,&quot;shard1&quot;)</div><div class="line">&#123;</div><div class="line">	&quot;code&quot; : 96,</div><div class="line">	&quot;ok&quot; : 0,</div><div class="line">	&quot;errmsg&quot; : &quot;moveChunk command failed on source shard. :: caused by :: WriteConcernFailed: waiting for replication timed out&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>分析：检查报错的分片（shard2）发现从节点状态为RECOVER，估计是因为主节点挂掉但是此节点没有切换成主节点，导致同步数据出现问题，进而引起blancer<br>同步报错。</p>
+<p>解决方案：删除RECOVER状态的节点中的全部数据，重启后自动同步数据，耗时较长。同步完成后启用blancer<br>mongos&gt; sh.setBalancerState(false)<br>系统自动触发moveChunk，首次耗时较长。问题已解决。</p>
+<p>问题产生原因还在查找中，测试环境未重现…………</p>
+]]></content>
+    
+    <summary type="html">
+    
+      给自己挖一个坑，Mongodb
+    
+    </summary>
+    
+    
+      <category term="给自己挖坑" scheme="http://dysing.github.io/tags/%E7%BB%99%E8%87%AA%E5%B7%B1%E6%8C%96%E5%9D%91/"/>
+    
+      <category term="Mongodb" scheme="http://dysing.github.io/tags/Mongodb/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Redis</title>
     <link href="http://dysing.github.io/2018/07/27/2018-07-27-redis/"/>
     <id>http://dysing.github.io/2018/07/27/2018-07-27-redis/</id>
     <published>2018-07-27T03:06:39.000Z</published>
-    <updated>2018-07-27T07:15:15.693Z</updated>
+    <updated>2018-07-27T08:59:33.192Z</updated>
     
     <content type="html"><![CDATA[<h1 id="给自己挖坑系列：Redis篇"><a href="#给自己挖坑系列：Redis篇" class="headerlink" title="给自己挖坑系列：Redis篇"></a>给自己挖坑系列：Redis篇</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>介绍直接从网上摘抄吧</p>
 <blockquote>
@@ -57,10 +83,11 @@
     <link href="http://dysing.github.io/2018/07/27/2018-07-27-dig-a-pit/"/>
     <id>http://dysing.github.io/2018/07/27/2018-07-27-dig-a-pit/</id>
     <published>2018-07-27T02:59:55.000Z</published>
-    <updated>2018-07-27T07:20:39.118Z</updated>
+    <updated>2018-08-02T11:51:31.605Z</updated>
     
     <content type="html"><![CDATA[<h1 id="突然想给自己挖一个坑，一个巨大无比的坑"><a href="#突然想给自己挖一个坑，一个巨大无比的坑" class="headerlink" title="突然想给自己挖一个坑，一个巨大无比的坑"></a>突然想给自己挖一个坑，一个巨大无比的坑</h1><h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p><a href="../../../../2018/07/27/2018-07-27-redis/">Redis</a></p>
-<h2 id="Mongodb"><a href="#Mongodb" class="headerlink" title="Mongodb"></a>Mongodb</h2><h2 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h2><h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><h2 id="Keepalived"><a href="#Keepalived" class="headerlink" title="Keepalived"></a>Keepalived</h2><h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2>]]></content>
+<h2 id="Mongodb"><a href="#Mongodb" class="headerlink" title="Mongodb"></a>Mongodb</h2><p><a href="/2018/08/02/2018-08-02-mongodb/">Mongodb</a></p>
+<h2 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h2><h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><h2 id="Keepalived"><a href="#Keepalived" class="headerlink" title="Keepalived"></a>Keepalived</h2><h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2>]]></content>
     
     <summary type="html">
     
@@ -95,38 +122,6 @@
     
     
       <category term="Nodejs" scheme="http://dysing.github.io/tags/Nodejs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Soapui导入wsdl报错</title>
-    <link href="http://dysing.github.io/2017/08/22/2017-08-22-soapui-wsdl/"/>
-    <id>http://dysing.github.io/2017/08/22/2017-08-22-soapui-wsdl/</id>
-    <published>2017-08-22T06:24:30.000Z</published>
-    <updated>2018-07-27T01:41:02.274Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Soupui导入wsdl报错"><a href="#Soupui导入wsdl报错" class="headerlink" title="Soupui导入wsdl报错"></a>Soupui导入wsdl报错</h1><p><img src="/resources/15033859071220.jpg" alt="A simpleContent extension must define a base type"></p>
-<p><strong>发现问题</strong>：测试Webservice接口，发现soapui导入报错，报错内容见上图；</p>
-<p><code>A simpleContent extension must define a base type</code></p>
-<p><strong>问题原因</strong>：wsdl中定义有问题，在simplecontent中必须有extension或者restriction内容，见<a href="http://www.voidcn.com/blog/caolaosanahnu/article/p-4657179.html" target="_blank" rel="external">http://www.voidcn.com/blog/caolaosanahnu/article/p-4657179.html</a>；全文搜索simplecontent，发现问题wsdl中有如下段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;complexTypename=&quot;Version&quot;&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">        &lt;extension/&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">&lt;/complexType&gt;</div></pre></td></tr></table></figure>
-<p><strong>解决方法</strong>：下载wsdl文件，将以上内容修改为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;complexTypename=&quot;Version&quot;&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">        &lt;extensionbase=&quot;xsd:string&quot;/&gt;</div><div class="line">    &lt;/simpleContent&gt;</div><div class="line">&lt;/complexType&gt;</div></pre></td></tr></table></figure>
-<p>通过修改后的文件导入成功。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      Soapui导入wsdl报错method
-    
-    </summary>
-    
-      <category term="Soapui,wsdl" scheme="http://dysing.github.io/categories/Soapui-wsdl/"/>
-    
-    
-      <category term="Soupui" scheme="http://dysing.github.io/tags/Soupui/"/>
-    
-      <category term="Wsdl" scheme="http://dysing.github.io/tags/Wsdl/"/>
     
   </entry>
   
@@ -166,6 +161,38 @@
       <category term="Json" scheme="http://dysing.github.io/tags/Json/"/>
     
       <category term="Exception" scheme="http://dysing.github.io/tags/Exception/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Soapui导入wsdl报错</title>
+    <link href="http://dysing.github.io/2017/08/22/2017-08-22-soapui-wsdl/"/>
+    <id>http://dysing.github.io/2017/08/22/2017-08-22-soapui-wsdl/</id>
+    <published>2017-08-22T06:24:30.000Z</published>
+    <updated>2018-07-27T01:41:02.274Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Soupui导入wsdl报错"><a href="#Soupui导入wsdl报错" class="headerlink" title="Soupui导入wsdl报错"></a>Soupui导入wsdl报错</h1><p><img src="/resources/15033859071220.jpg" alt="A simpleContent extension must define a base type"></p>
+<p><strong>发现问题</strong>：测试Webservice接口，发现soapui导入报错，报错内容见上图；</p>
+<p><code>A simpleContent extension must define a base type</code></p>
+<p><strong>问题原因</strong>：wsdl中定义有问题，在simplecontent中必须有extension或者restriction内容，见<a href="http://www.voidcn.com/blog/caolaosanahnu/article/p-4657179.html" target="_blank" rel="external">http://www.voidcn.com/blog/caolaosanahnu/article/p-4657179.html</a>；全文搜索simplecontent，发现问题wsdl中有如下段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;complexTypename=&quot;Version&quot;&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">        &lt;extension/&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">&lt;/complexType&gt;</div></pre></td></tr></table></figure>
+<p><strong>解决方法</strong>：下载wsdl文件，将以上内容修改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;complexTypename=&quot;Version&quot;&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">        &lt;extensionbase=&quot;xsd:string&quot;/&gt;</div><div class="line">    &lt;/simpleContent&gt;</div><div class="line">&lt;/complexType&gt;</div></pre></td></tr></table></figure>
+<p>通过修改后的文件导入成功。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      Soapui导入wsdl报错method
+    
+    </summary>
+    
+      <category term="Soapui,wsdl" scheme="http://dysing.github.io/categories/Soapui-wsdl/"/>
+    
+    
+      <category term="Soupui" scheme="http://dysing.github.io/tags/Soupui/"/>
+    
+      <category term="Wsdl" scheme="http://dysing.github.io/tags/Wsdl/"/>
     
   </entry>
   

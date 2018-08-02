@@ -6,21 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://dysing.github.io">
-  <title>Soapui导入wsdl报错 | Dysing</title>
+  <title>Archives: 2018/8 | Dysing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Soapui导入wsdl报错method">
-<meta name="keywords" content="Soupui,Wsdl">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Soapui导入wsdl报错">
-<meta property="og:url" content="http://dysing.github.io/2017/08/22/2017-08-22-soapui-wsdl/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Dysing">
+<meta property="og:url" content="http://dysing.github.io/archives/2018/08/index.html">
 <meta property="og:site_name" content="Dysing">
-<meta property="og:description" content="Soapui导入wsdl报错method">
-<meta property="og:image" content="http://dysing.github.io/resources/15033859071220.jpg">
-<meta property="og:updated_time" content="2018-07-27T01:41:02.274Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Soapui导入wsdl报错">
-<meta name="twitter:description" content="Soapui导入wsdl报错method">
-<meta name="twitter:image" content="http://dysing.github.io/resources/15033859071220.jpg">
+<meta name="twitter:title" content="Dysing">
   
     <link rel="alternative" href="/atom.xml" title="Dysing" type="application/atom+xml">
   
@@ -160,177 +153,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2017-08-22-soapui-wsdl" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Soapui导入wsdl报错
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/08/02/2018-08-02-mongodb/" class="archive-article-date">
+  	<time datetime="2018-08-02T11:47:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/08/02/2018-08-02-mongodb/">Mongodb</a>
     </h1>
   
 
-        
-        <a href="/2017/08/22/2017-08-22-soapui-wsdl/" class="archive-article-date">
-  	<time datetime="2017-08-22T06:24:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Soupui导入wsdl报错"><a href="#Soupui导入wsdl报错" class="headerlink" title="Soupui导入wsdl报错"></a>Soupui导入wsdl报错</h1><p><img src="/resources/15033859071220.jpg" alt="A simpleContent extension must define a base type"></p>
-<p><strong>发现问题</strong>：测试Webservice接口，发现soapui导入报错，报错内容见上图；</p>
-<p><code>A simpleContent extension must define a base type</code></p>
-<p><strong>问题原因</strong>：wsdl中定义有问题，在simplecontent中必须有extension或者restriction内容，见<a href="http://www.voidcn.com/blog/caolaosanahnu/article/p-4657179.html" target="_blank" rel="external">http://www.voidcn.com/blog/caolaosanahnu/article/p-4657179.html</a>；全文搜索simplecontent，发现问题wsdl中有如下段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;complexTypename=&quot;Version&quot;&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">        &lt;extension/&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">&lt;/complexType&gt;</div></pre></td></tr></table></figure>
-<p><strong>解决方法</strong>：下载wsdl文件，将以上内容修改为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;complexTypename=&quot;Version&quot;&gt;</div><div class="line">    &lt;simpleContent&gt;</div><div class="line">        &lt;extensionbase=&quot;xsd:string&quot;/&gt;</div><div class="line">    &lt;/simpleContent&gt;</div><div class="line">&lt;/complexType&gt;</div></pre></td></tr></table></figure>
-<p>通过修改后的文件导入成功。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Soupui</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">给自己挖坑</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Wsdl</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mongodb</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Soapui-wsdl//" class="article-tag-list-link color2">Soapui,wsdl</a>
-        		</li>
-      		
-		</ul>
-	</div>
+          
 
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3aQW7DMAwF0dz/0u42QFtlPmkXFTVaBYkr63VBkCJfL7yut/X+zffPvz2/3nn9zW1LhgwZ2zKu5Vofixz3Ki1+NhkyZJzDWIfCNWANXlPJ35IwLUOGDBmEQZ7nIViGDBkynmOQQned5MmQIUNGp4jlZSo5Vg18Qy0uQ4aMDRn81v3vPz/S35AhQ8ZWjNplfXpZVit3g1PJkCFjNIMHON7CTBO+WsCVIUPGyYxaS5KE2ifan8XYL0OGjK0YacuQX7p1ruR4UP4hw5UhQ8ZQRi3VK74ybEyiJ2XIkDGagX4IS9m0GclHzUjgliFDxjwGGYzgDUWSONb2+XASGTJkjGaQsEhCYbrDI+1PGTJkjGbcOxjBYTwpDBoGMmTIGMqola+El7YHeIJ4WxUuQ4aMf88gDUX+Yn5ltn5XXADLkCHjGEbaqkzbnJ1WQTAzIkOGjHEMUr7yrWsHbTUDeBUuQ4aMbRl3DUOkKWan0P1QhcuQIWMcg2P4IdLxi3QfdGsoQ4aMoQweatPCtTOEQUpZGTJknMOobZEORvCEL04rZciQcQAjbTqm13C1MB0klDJkyBjKuMKVpnr99mQrt5UhQ8YIRifM8Ss5DuMla9ynlSFDxuaMWhsgZfD/Ig+4MmTIOI3RKThrZW0t1UOdWBkyZMjAw1s8vKbsYLJDhgwZBzPSHdIn0zRUhgwZJzDSchSla+HYRNpIkCFDxjkMXjp2ErvWVdpd4xoyZMjYj/EFKpIZBhIO5nsAAAAASUVORK5CYII=" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/08/22/2017-08-22-java-json-exception/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          异常处理Property &#39;name&#39; has no getter method
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/08/21/2017-08-21-https/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Https单向认证和双向认证</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -353,8 +233,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
